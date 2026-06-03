@@ -21,17 +21,15 @@ input,select,textarea{font-family:inherit}
 .btn-secondary:hover{background:#1e1b4b}
 .btn-ghost:hover{background:#1a1a2e}
 
-/* Stats */
 .stats-wrap{padding:16px 20px 0}
 .stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .stat-card{background:#12122a;border:1px solid #1e1e3a;border-radius:10px;padding:10px 18px;min-width:90px;text-align:center}
 .stat-val{font-size:22px;font-weight:700;color:#a5b4fc}
 .stat-lbl{font-size:11px;color:#64748b;margin-top:2px}
-.star-legend{display:flex;gap:6px;flex-wrap:wrap;padding:8px 0 12px}
-.legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:#64748b}
-.legend-star{color:#f5c518;font-size:12px}
+.star-legend{display:flex;gap:8px;flex-wrap:wrap;padding:8px 0 14px;align-items:center}
+.legend-item{display:flex;align-items:center;gap:3px;font-size:11px;color:#64748b;white-space:nowrap}
+.legend-dot{color:#2d2d4e;font-size:11px}
 
-/* Tabs */
 .tabs{display:flex;gap:4px;padding:0 20px;border-bottom:1px solid #1e1e3a}
 .tab{background:transparent;border:none;border-bottom:2px solid transparent;color:#64748b;padding:10px 18px;font-size:13px;font-weight:500;transition:all 0.15s;margin-bottom:-1px}
 .tab.active{color:#a5b4fc;border-bottom-color:#4f46e5}
@@ -40,70 +38,65 @@ input,select,textarea{font-family:inherit}
 .toast{position:fixed;bottom:24px;right:20px;background:#1e1b4b;border:1px solid #4f46e5;border-radius:10px;padding:12px 18px;font-size:13px;color:#a5b4fc;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none}
 .toast.show{opacity:1}
 
-/* Layout con top sidebar */
-.page-with-top{display:grid;grid-template-columns:220px 1fr;gap:0;align-items:start;padding:20px 20px 0}
-@media(max-width:700px){.page-with-top{grid-template-columns:1fr}}
-
-/* Top sidebar */
-.top-sidebar{background:#12122a;border:1px solid #1e1e3a;border-radius:14px;padding:14px;position:sticky;top:72px}
-.top-sidebar-title{font-size:12px;font-weight:600;color:#a5b4fc;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+/* Layout de 2 columnas — sidebar fija izquierda, contenido derecha */
+.two-col{display:flex;gap:16px;padding:20px;align-items:flex-start}
+.sidebar{width:220px;flex-shrink:0;background:#12122a;border:1px solid #1e1e3a;border-radius:14px;padding:14px;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow-y:auto}
+.sidebar-title{font-size:11px;font-weight:600;color:#a5b4fc;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .top-item{display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid #1e1e3a}
-.top-item:last-child{border-bottom:none}
-.top-rank{font-size:11px;font-weight:700;color:#4a4a6a;min-width:16px;margin-top:2px}
+.top-item:last-child{border-bottom:none;padding-bottom:0}
+.top-rank{font-size:11px;font-weight:700;color:#4a4a6a;min-width:18px;margin-top:1px;flex-shrink:0}
 .top-rank.gold{color:#f5c518}
 .top-rank.silver{color:#94a3b8}
 .top-rank.bronze{color:#cd7c3a}
 .top-info{flex:1;min-width:0}
-.top-title{font-size:13px;font-weight:600;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.top-genre{font-size:10px;color:#4a4a6a;margin-top:1px}
-.top-stars{font-size:11px;color:#f5c518;margin-top:2px}
-.top-synopsis{font-size:11px;color:#64748b;line-height:1.5;margin-top:4px}
+.top-title{font-size:12px;font-weight:600;color:#e2e8f0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top-sub{font-size:10px;color:#4a4a6a;margin-top:1px}
+.top-stars{font-size:11px;color:#f5c518;margin-top:2px;letter-spacing:0}
+.top-syn{font-size:10px;color:#64748b;line-height:1.5;margin-top:3px}
 
-/* Género dashboard */
-.genre-col{padding-left:16px}
+/* Contenido principal (género / recs) */
+.main-col{flex:1;min-width:0}
 .genre-section{margin-bottom:24px}
 .genre-heading{font-size:15px;font-weight:600;color:#a5b4fc;padding:0 0 10px;border-bottom:1px solid #1e1e3a;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.genre-emoji{font-size:18px}
+.genre-emoji{font-size:17px}
 .genre-count{font-size:11px;color:#4a4a6a;font-weight:400;margin-left:auto}
-.dash-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.dash-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 
 .dash-card{background:#12122a;border:1px solid #1e1e3a;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
-.dash-title{font-weight:600;font-size:14px;color:#e2e8f0;line-height:1.3}
-.dash-year{font-size:11px;color:#4a4a6a}
-.dash-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.dash-title{font-weight:600;font-size:13px;color:#e2e8f0;line-height:1.3}
+.dash-year{font-size:11px;color:#4a4a6a;font-weight:400}
+.dash-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
 .badge{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500}
 .badge-vista{background:#1a3a1a;color:#4ade80;border:1px solid #166534}
 .badge-pendiente{background:#2a2a1a;color:#facc15;border:1px solid #854d0e}
 .badge-type{background:#1e2a3a;color:#7dd3fc;border:1px solid #1e40af}
-.dash-synopsis{font-size:12px;color:#94a3b8;line-height:1.65;border-left:2px solid #2d2d4e;padding-left:10px}
+.dash-synopsis{font-size:11px;color:#94a3b8;line-height:1.6;border-left:2px solid #2d2d4e;padding-left:8px}
 
 /* Recomendaciones */
-.recs-page{display:grid;grid-template-columns:220px 1fr;gap:0;align-items:start;padding:20px 20px 0}
-@media(max-width:700px){.recs-page{grid-template-columns:1fr}}
-.rec-genre-section{margin-bottom:20px}
-.rec-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.rec-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .rec-card{background:#12122a;border:1px solid #1e1e3a;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:7px}
-.rec-title{font-weight:600;font-size:14px;color:#e2e8f0}
-.rec-meta{font-size:11px;color:#4a4a6a}
-.rec-synopsis{font-size:12px;color:#94a3b8;line-height:1.6}
-.rec-reason{font-size:11px;color:#4ade80;border-left:2px solid #166534;padding-left:8px;margin-top:2px;line-height:1.5}
+.rec-title{font-weight:600;font-size:13px;color:#e2e8f0}
+.rec-meta{font-size:10px;color:#4a4a6a}
+.rec-synopsis{font-size:11px;color:#94a3b8;line-height:1.6}
+.rec-reason{font-size:10px;color:#4ade80;border-left:2px solid #166534;padding-left:8px;line-height:1.5}
 
 /* Mi lista */
 .filters{display:flex;gap:8px;padding:16px 20px;flex-wrap:wrap}
 .filters input,.filters select{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:8px 12px;color:#e2e8f0;font-size:13px}
-.filters input{flex:1 1 160px}
+.filters input{flex:1 1 150px}
 .filters input:focus,.filters select:focus{outline:1px solid #4f46e5}
-.list-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));padding:0 20px}
+.list-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));padding:0 20px}
 
 .card{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s}
 .card:hover{border-color:#4f46e5}
 .card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.card-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:5px}
-.synopsis-block{font-size:13px;color:#94a3b8;line-height:1.6;border-left:2px solid #4f46e5;padding-left:10px}
+.card-badges{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:5px}
+.synopsis-block{font-size:12px;color:#94a3b8;line-height:1.6;border-left:2px solid #4f46e5;padding-left:10px}
 .card-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.stars{display:flex;gap:2px}
-.star{font-size:18px;color:#444;cursor:pointer;transition:color 0.1s;background:none;border:none;padding:0;line-height:1}
+.stars{display:flex;gap:1px}
+.star{font-size:17px;color:#333;cursor:pointer;transition:color 0.1s;background:none;border:none;padding:0;line-height:1}
 .star.lit{color:#f5c518}
+.star.sixth{font-size:17px}
 .card-actions{display:flex;gap:7px}
 .btn-sm{font-size:11px;padding:3px 10px;border-radius:6px;background:transparent}
 .btn-sm-purple{border:1px solid #4f46e5;color:#a5b4fc}
@@ -125,6 +118,14 @@ input,select,textarea{font-family:inherit}
 .modal input,.modal select,.modal textarea{width:100%;background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:8px 12px;color:#e2e8f0;font-size:14px}
 .modal input:focus,.modal select:focus,.modal textarea:focus{outline:1px solid #4f46e5}
 .modal textarea{resize:vertical}
+
+/* Responsive: en pantallas pequeñas sidebar va arriba */
+@media(max-width:680px){
+  .two-col{flex-direction:column}
+  .sidebar{width:100%;position:static;max-height:none}
+  .dash-grid,.rec-grid{grid-template-columns:1fr}
+  .list-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -145,15 +146,17 @@ input,select,textarea{font-family:inherit}
 <div class="stats-wrap">
   <div class="stats" id="stats"></div>
   <div class="star-legend">
-    <span class="legend-item"><span class="legend-star">★</span> No lo terminé</span>
-    <span style="color:#2d2d4e;font-size:12px">·</span>
-    <span class="legend-item"><span class="legend-star">★★</span> Aburrido</span>
-    <span style="color:#2d2d4e;font-size:12px">·</span>
-    <span class="legend-item"><span class="legend-star">★★★</span> Bueno</span>
-    <span style="color:#2d2d4e;font-size:12px">·</span>
-    <span class="legend-item"><span class="legend-star">★★★★</span> Recomendado</span>
-    <span style="color:#2d2d4e;font-size:12px">·</span>
-    <span class="legend-item"><span class="legend-star">★★★★★</span> Tienes que verlo</span>
+    <span class="legend-item">⭐ No lo terminé</span>
+    <span class="legend-dot">·</span>
+    <span class="legend-item">⭐⭐ Aburrido</span>
+    <span class="legend-dot">·</span>
+    <span class="legend-item">⭐⭐⭐ Bueno</span>
+    <span class="legend-dot">·</span>
+    <span class="legend-item">⭐⭐⭐⭐ Recomendado</span>
+    <span class="legend-dot">·</span>
+    <span class="legend-item">⭐⭐⭐⭐⭐ Muy recomendado</span>
+    <span class="legend-dot">·</span>
+    <span class="legend-item">⭐⭐⭐⭐⭐⭐ Tienes que verlo</span>
   </div>
 </div>
 
@@ -165,7 +168,6 @@ input,select,textarea{font-family:inherit}
 
 <div id="content"></div>
 
-<!-- Modal -->
 <div class="modal-overlay" id="modal" style="display:none" onclick="closeModalOutside(event)">
   <div class="modal">
     <div class="modal-header">
@@ -193,20 +195,21 @@ input,select,textarea{font-family:inherit}
 <script>
 const GENRES = ["Acción","Comedia","Drama","Terror","Ciencia ficción","Thriller","Animación","Documental","Romance","Fantasía","Crimen"];
 const GENRE_EMOJI = {Acción:"⚡",Comedia:"😂",Drama:"🎭",Terror:"👻","Ciencia ficción":"🚀",Thriller:"🔪",Animación:"✨",Documental:"📽️",Romance:"❤️",Fantasía:"🧙",Crimen:"🕵️"};
-const STORAGE_KEY = "cinelog_v3";
+const STORAGE_KEY = "cinelog_v4";
+const MAX_STARS = 6;
 
 const INITIAL = [{"id":1,"title":"Paradise","year":2023,"type":"Serie","genre":"Ciencia ficción","status":"Vista","rating":5,"synopsis":"En una tranquila comunidad conviven algunas de las personas más prominentes del mundo. La calma estalla cuando se comete un asesinato y da comienzo una delicada investigación."},{"id":2,"title":"Palm Springs","year":2020,"type":"Película","genre":"Comedia","status":"Pendiente","rating":0,"synopsis":"Dos desconocidos quedan atrapados en un bucle temporal durante una boda en Palm Springs. Comedia romántica con toque de ciencia ficción y mucho humor negro."},{"id":3,"title":"Marty Supreme","year":2024,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"Un excéntrico campeón de ping pong busca redención y gloria en los circuitos alternativos de Nueva York. Drama indie con actuaciones memorables."},{"id":4,"title":"The Madison","year":2026,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"Se explora el duelo y la conexión humana desde una familia de Nueva York, situada en el río Madison, en Montana."},{"id":5,"title":"The Pitt","year":2025,"type":"Serie","genre":"Drama","status":"Vista","rating":4,"synopsis":"Drama médico ambientado en urgencias de un hospital público de Pittsburgh. Muestra la crudeza del sistema de salud americano en tiempo real."},{"id":6,"title":"Knives Out (trilogía)","year":2019,"type":"Película","genre":"Thriller","status":"Vista","rating":3,"synopsis":"Cuando el patriarca de una excéntrica familia adinerada aparece muerto, el detective Benoit Blanc investiga un caso lleno de giros inesperados. Whodunit moderno y brillante."},{"id":7,"title":"Weapons","year":2025,"type":"Película","genre":"Thriller","status":"Vista","rating":3,"synopsis":"Todos los niños de la clase, excepto uno, desaparecen misteriosamente en la misma noche y exactamente a la misma hora. La comunidad se pregunta quién o qué está detrás de la desaparición."},{"id":8,"title":"Sinners","year":2025,"type":"Película","genre":"Terror","status":"Vista","rating":5,"synopsis":"Dos gemelos regresan a su pueblo natal en el sur de Mississippi en los años 30, pero descubren que algo sobrenatural y oscuro acecha la región."},{"id":9,"title":"La Oficina","year":2026,"type":"Serie","genre":"Comedia","status":"Vista","rating":5,"synopsis":"Mockumentary sobre la vida cotidiana de empleados bajo el mando de un jefe incompetente pero carismático. Versión española del clásico de Ricky Gervais."},{"id":10,"title":"F1","year":2025,"type":"Película","genre":"Acción","status":"Vista","rating":4,"synopsis":"Un piloto retirado regresa a la Fórmula 1 junto a un joven talento. Producida con acceso real a las carreras del campeonato mundial, protagonizada por Brad Pitt."},{"id":11,"title":"Top Gun: Maverick","year":2022,"type":"Película","genre":"Acción","status":"Vista","rating":4,"synopsis":"El legendario piloto Maverick regresa para entrenar a una nueva generación de aviadores. Secuela espectacular llena de adrenalina y emoción."},{"id":12,"title":"The White Lotus","year":2021,"type":"Serie","genre":"Drama","status":"Vista","rating":4,"synopsis":"Antología de humor oscuro que sigue a huéspedes y empleados de un resort de lujo. Expone la hipocresía y privilegios de la clase alta americana."},{"id":13,"title":"Fargo","year":2014,"type":"Serie","genre":"Crimen","status":"Vista","rating":4,"synopsis":"Antología criminal inspirada en la película de los Coen. Cada temporada presenta un nuevo caso en el gélido Medio Oeste americano con personajes excéntricos."},{"id":14,"title":"The Killer","year":2023,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Un asesino a sueldo meticuloso comete un error y debe enfrentar las consecuencias. David Fincher dirige este thriller frío y estilizado con Michael Fassbender."},{"id":15,"title":"Seven","year":1995,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Dos detectives persiguen a un asesino en serie que basa sus crímenes en los siete pecados capitales. Obra maestra del thriller oscuro dirigida por David Fincher."},{"id":16,"title":"La Lista de Schindler","year":1993,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"La historia real de Oskar Schindler, empresario alemán que salvó la vida de más de mil judíos durante el Holocausto. Drama histórico esencial de Steven Spielberg."},{"id":200,"title":"Succession","year":2018,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"La familia Roy, propietaria de un imperio mediático, entra en guerra cuando el patriarca anuncia su retiro. Poder, traición y humor negro en su máxima expresión."},{"id":201,"title":"Severance","year":2022,"type":"Serie","genre":"Ciencia ficción","status":"Pendiente","rating":0,"synopsis":"Los empleados de Lumon Industries se someten a un procedimiento que separa quirúrgicamente sus memorias laborales de las personales."},{"id":202,"title":"True Detective T1","year":2014,"type":"Serie","genre":"Crimen","status":"Pendiente","rating":0,"synopsis":"Dos detectives de personalidades opuestas investigan durante 17 años una serie de crímenes rituales en el sur de Louisiana. Atmósfera oscura e hipnótica."}];
 
 const RECS = [
   {title:"Severance",year:2022,type:"Serie",genre:"Ciencia ficción",synopsis:"Los empleados de Lumon Industries se someten a un procedimiento que separa quirúrgicamente sus memorias laborales de las personales.",reason:"Te encantó Paradise — Severance tiene la misma tensión de misterio y thriller psicológico en una comunidad aparentemente perfecta."},
   {title:"The Bear",year:2022,type:"Serie",genre:"Drama",synopsis:"Un chef de alta cocina regresa a Chicago para hacerse cargo del restaurante familiar. Ritmo frenético y actuaciones de primer nivel.",reason:"Calificaste The Pitt con 4★ — The Bear tiene esa misma energía de presión extrema en tiempo real dentro de un ambiente profesional."},
-  {title:"Get Out",year:2017,type:"Película",genre:"Terror",synopsis:"Un joven afroamericano visita a la familia de su novia y descubre que algo perturbador y aterrador se esconde detrás de su aparente cordialidad.",reason:"Le diste 5★ a Sinners — Get Out tiene esa misma mezcla de terror sobrenatural con crítica social profunda y un giro devastador."},
-  {title:"Prisoners",year:2013,type:"Película",genre:"Thriller",synopsis:"Cuando dos niñas desaparecen en Acción de Gracias, el desesperado padre toma la justicia por su mano mientras el detective sigue sus propias pistas.",reason:"Calificaste Weapons y Knives Out — Prisoners lleva el thriller de investigación al límite moral, dirigido por Denis Villeneuve."},
+  {title:"Get Out",year:2017,type:"Película",genre:"Terror",synopsis:"Un joven afroamericano visita a la familia de su novia y descubre que algo perturbador se esconde detrás de su aparente cordialidad.",reason:"Le diste 5★ a Sinners — Get Out tiene esa misma mezcla de terror sobrenatural con crítica social profunda y un giro devastador."},
+  {title:"Prisoners",year:2013,type:"Película",genre:"Thriller",synopsis:"Cuando dos niñas desaparecen, el desesperado padre toma la justicia por su mano mientras el detective sigue sus propias pistas.",reason:"Calificaste Weapons y Knives Out — Prisoners lleva el thriller de investigación al límite moral, dirigido por Denis Villeneuve."},
   {title:"True Detective T1",year:2014,type:"Serie",genre:"Crimen",synopsis:"Dos detectives de personalidades opuestas investigan durante 17 años crímenes rituales en Louisiana. Atmósfera oscura e hipnótica.",reason:"Tu 4★ a Fargo indica que aprecias el crimen con profundidad narrativa — True Detective T1 es la cima del género en televisión."},
-  {title:"Barry",year:2018,type:"Serie",genre:"Comedia",synopsis:"Un sicario de mediano nivel descubre su pasión por la actuación mientras intenta abandonar su vida criminal en Los Ángeles.",reason:"La Oficina 5★ muestra que disfrutas la comedia oscura con personajes complejos — Barry lleva ese humor al límite con una mezcla de acción y drama."},
+  {title:"Barry",year:2018,type:"Serie",genre:"Comedia",synopsis:"Un sicario de mediano nivel descubre su pasión por la actuación mientras intenta abandonar su vida criminal en Los Ángeles.",reason:"La Oficina 5★ muestra que disfrutas la comedia oscura con personajes complejos — Barry lleva ese humor al límite."},
 ];
 
-let items = [], editingId = null, nextId = 203, activeTab = "generos";
+let items=[], editingId=null, nextId=203, activeTab="generos";
 
 function load(){
   try{
@@ -228,7 +231,6 @@ function importData(e){
   r.onload=ev=>{try{const p=JSON.parse(ev.target.result);if(p.items){items=p.items;nextId=p.nextId||203;save();renderStats();render();showToast("Lista importada ✓");}}catch{showToast("Archivo inválido");}};
   r.readAsText(f);e.target.value="";
 }
-
 function showToast(msg){
   const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"),2500);
@@ -266,7 +268,6 @@ function saveModal(){
   else{items.push({...data,id:nextId++,rating:0});showToast("Agregado ✓");}
   save();renderStats();render();closeModal();
 }
-
 function deleteItem(id){
   if(!confirm("¿Eliminar este título?"))return;
   items=items.filter(i=>i.id!==id);save();renderStats();render();showToast("Eliminado");
@@ -283,30 +284,40 @@ function toggleSyn(id){
   const el=document.getElementById("syn-"+id);
   if(el)el.style.display=el.style.display==="none"?"block":"none";
 }
-function addFromRec(r){
+function addFromRec(idx){
+  const r=RECS[idx];
   if(items.find(i=>i.title.toLowerCase()===r.title.toLowerCase())){showToast("Ya está en tu lista");return;}
   items.push({id:nextId++,title:r.title,year:r.year,type:r.type,genre:r.genre,status:"Pendiente",rating:0,synopsis:r.synopsis});
   save();renderStats();showToast(`"${r.title}" añadida ✓`);
 }
 
-function starsStr(n){return "★".repeat(n)+"☆".repeat(5-n);}
+function starsDisplay(rating, size=12){
+  let h="";
+  for(let s=1;s<=MAX_STARS;s++){
+    const lit=rating>=s;
+    const color=lit?(s===MAX_STARS?"#c084fc":"#f5c518"):"#2d2d4e";
+    h+=`<span style="font-size:${size}px;color:${color}">★</span>`;
+  }
+  return h;
+}
 
-/* TOP SIDEBAR */
-function buildTopSidebar(){
-  const ranked=[...items].filter(i=>i.rating>0).sort((a,b)=>b.rating-a.rating||a.title.localeCompare(b.title)).slice(0,10);
-  if(!ranked.length) return `<div class="top-sidebar"><div class="top-sidebar-title">🏆 Top</div><p style="font-size:12px;color:#4a4a6a">Califica títulos para ver el ranking</p></div>`;
+/* SIDEBAR TOP — todos los títulos calificados */
+function buildSidebar(){
+  const ranked=[...items].filter(i=>i.rating>0).sort((a,b)=>b.rating-a.rating||a.title.localeCompare(b.title));
   const rankClass=i=>i===0?"gold":i===1?"silver":i===2?"bronze":"";
-  const rows=ranked.map((item,i)=>`
-    <div class="top-item">
-      <span class="top-rank ${rankClass(i)}">${i+1}</span>
-      <div class="top-info">
-        <div class="top-title" title="${item.title}">${item.title}</div>
-        <div class="top-genre">${item.genre} · ${item.type}</div>
-        <div class="top-stars">${starsStr(item.rating)}</div>
-        ${item.synopsis?`<div class="top-synopsis">${item.synopsis.split(".")[0]}.</div>`:""}
-      </div>
-    </div>`).join("");
-  return `<div class="top-sidebar"><div class="top-sidebar-title">🏆 Top calificados</div>${rows}</div>`;
+  const rows=ranked.length
+    ? ranked.map((item,i)=>`
+      <div class="top-item">
+        <span class="top-rank ${rankClass(i)}">${i+1}</span>
+        <div class="top-info">
+          <div class="top-title" title="${item.title}">${item.title}</div>
+          <div class="top-sub">${item.genre} · ${item.type}</div>
+          <div class="top-stars">${starsDisplay(item.rating,11)}</div>
+          ${item.synopsis?`<div class="top-syn">${item.synopsis.split(".")[0]}.</div>`:""}
+        </div>
+      </div>`).join("")
+    : `<p style="font-size:11px;color:#4a4a6a">Califica títulos para ver el ranking</p>`;
+  return `<div class="sidebar"><div class="sidebar-title">🏆 Top calificados</div>${rows}</div>`;
 }
 
 /* RENDER GENEROS */
@@ -314,18 +325,18 @@ function renderGeneros(){
   const byGenre={};
   items.forEach(i=>{if(!byGenre[i.genre])byGenre[i.genre]=[];byGenre[i.genre].push(i);});
   const present=GENRES.filter(g=>byGenre[g]);
-  const genreCol=present.length?present.map(g=>{
+  const main=present.length ? present.map(g=>{
     const cards=byGenre[g].map(item=>`
       <div class="dash-card">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-          <div>
-            <div class="dash-title">${item.title} ${item.year?`<span class="dash-year">(${item.year})</span>`:""}</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
+          <div style="flex:1;min-width:0">
+            <div class="dash-title">${item.title} <span class="dash-year">${item.year?"("+item.year+")":""}</span></div>
             <div class="dash-badges">
               <span class="badge ${item.status==="Vista"?"badge-vista":"badge-pendiente"}">${item.status}</span>
               <span class="badge badge-type">${item.type}</span>
             </div>
           </div>
-          <div style="white-space:nowrap;font-size:13px">${item.rating?`<span style="color:#f5c518">${starsStr(item.rating)}</span>`:`<span style="font-size:10px;color:#4a4a6a">Sin calificar</span>`}</div>
+          <div style="flex-shrink:0">${item.rating?starsDisplay(item.rating):`<span style="font-size:10px;color:#4a4a6a">Sin calificar</span>`}</div>
         </div>
         ${item.synopsis?`<p class="dash-synopsis">${item.synopsis}</p>`:""}
       </div>`).join("");
@@ -333,15 +344,15 @@ function renderGeneros(){
       <div class="genre-heading"><span class="genre-emoji">${GENRE_EMOJI[g]||"🎬"}</span>${g}<span class="genre-count">${byGenre[g].length} título${byGenre[g].length>1?"s":""}</span></div>
       <div class="dash-grid">${cards}</div>
     </div>`;
-  }).join(""):`<div class="empty"><div class="empty-icon">🎬</div><p>Agrega títulos para verlos por género</p></div>`;
+  }).join("") : `<div class="empty"><div class="empty-icon">🎬</div><p>Agrega títulos para verlos por género</p></div>`;
 
-  return `<div class="page-with-top">${buildTopSidebar()}<div class="genre-col">${genreCol}</div></div>`;
+  return `<div class="two-col">${buildSidebar()}<div class="main-col">${main}</div></div>`;
 }
 
 /* RENDER RECOMENDACIONES */
 function renderRecs(){
   const byGenre={};
-  RECS.forEach(r=>{if(!byGenre[r.genre])byGenre[r.genre]=[];byGenre[r.genre].push(r);});
+  RECS.forEach((r,i)=>{if(!byGenre[r.genre])byGenre[r.genre]=[];byGenre[r.genre].push({...r,idx:i});});
   const sections=Object.keys(byGenre).map(g=>{
     const cards=byGenre[g].map(r=>`
       <div class="rec-card">
@@ -351,14 +362,14 @@ function renderRecs(){
         </div>
         <p class="rec-synopsis">${r.synopsis}</p>
         <div class="rec-reason">💡 ${r.reason}</div>
-        <button onclick='addFromRec(${JSON.stringify(r).replace(/'/g,"\\'")} )' style="margin-top:4px;background:transparent;border:1px solid #4f46e5;border-radius:7px;color:#a5b4fc;padding:5px 12px;font-size:11px;cursor:pointer;width:100%">+ Añadir a mi lista</button>
+        <button onclick="addFromRec(${r.idx})" style="margin-top:4px;background:transparent;border:1px solid #4f46e5;border-radius:7px;color:#a5b4fc;padding:5px 12px;font-size:11px;cursor:pointer;width:100%">+ Añadir a mi lista</button>
       </div>`).join("");
-    return `<div class="rec-genre-section">
+    return `<div class="genre-section">
       <div class="genre-heading"><span class="genre-emoji">${GENRE_EMOJI[g]||"🎬"}</span>${g}</div>
       <div class="rec-grid">${cards}</div>
     </div>`;
   }).join("");
-  return `<div class="recs-page">${buildTopSidebar()}<div class="genre-col">${sections}</div></div>`;
+  return `<div class="two-col">${buildSidebar()}<div class="main-col">${sections}</div></div>`;
 }
 
 /* RENDER MI LISTA */
@@ -370,7 +381,13 @@ function renderLista(){
   const filtered=items.filter(i=>(!q||i.title.toLowerCase().includes(q))&&(!st||i.status===st)&&(!tp||i.type===tp)&&(!gn||i.genre===gn));
   const genreOpts=GENRES.map(g=>`<option value="${g}">${g}</option>`).join("");
   const cards=filtered.length?filtered.map(item=>{
-    const stars=[1,2,3,4,5].map(s=>`<button class="star ${item.rating>=s?"lit":""}" onclick="setRating(${item.id},${s})">★</button>`).join("");
+    const stars=Array.from({length:MAX_STARS},(_,s)=>{
+      const n=s+1;
+      const lit=item.rating>=n;
+      const isSixth=n===MAX_STARS;
+      const litColor=isSixth?"#c084fc":"#f5c518";
+      return `<button class="star${isSixth?" sixth":""}" style="color:${lit?litColor:"#333"}" onclick="setRating(${item.id},${n})" title="${n} estrella${n>1?"s":""}">★</button>`;
+    }).join("");
     return `<div class="card">
       <div class="card-header">
         <div style="flex:1">
@@ -402,7 +419,7 @@ function renderLista(){
 
   return `
     <div class="filters">
-      <input type="text" id="searchInput" placeholder="🔍 Buscar título..." oninput="render()" value="${q}"/>
+      <input type="text" id="searchInput" placeholder="🔍 Buscar..." oninput="render()" value="${q}"/>
       <select id="filterStatus" onchange="render()">
         <option value="">Estado: Todos</option>
         <option value="Vista" ${st==="Vista"?"selected":""}>Vista</option>
@@ -426,7 +443,6 @@ function render(){
   else if(activeTab==="recs")c.innerHTML=renderRecs();
   else c.innerHTML=renderLista();
 }
-
 function renderStats(){
   const vistas=items.filter(i=>i.status==="Vista").length;
   const pend=items.filter(i=>i.status==="Pendiente").length;
@@ -436,7 +452,6 @@ function renderStats(){
     {l:"Total",v:items.length},{l:"Vistas ✓",v:vistas},{l:"Pendientes",v:pend},{l:"Rating prom.",v:avg+"★"}
   ].map(s=>`<div class="stat-card"><div class="stat-val">${s.v}</div><div class="stat-lbl">${s.l}</div></div>`).join("");
 }
-
 function switchTab(tab){
   activeTab=tab;
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
