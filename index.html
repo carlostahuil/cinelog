@@ -5,115 +5,118 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>CineLog – Watchlist</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#0d0d1a;color:#e2e8f0;font-family:system-ui,-apple-system,sans-serif;min-height:100vh;padding-bottom:40px}
-  button{cursor:pointer;font-family:inherit}
-  input,select,textarea{font-family:inherit}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d0d1a;color:#e2e8f0;font-family:system-ui,-apple-system,sans-serif;min-height:100vh;padding-bottom:60px}
+button{cursor:pointer;font-family:inherit}
+input,select,textarea{font-family:inherit}
 
-  /* Header */
-  .header{background:#12122a;border-bottom:1px solid #1e1e3a;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:50}
-  .logo{font-size:20px;font-weight:700;color:#a5b4fc;letter-spacing:-0.5px}
-  .subtitle{font-size:12px;color:#64748b;margin-top:2px}
-  .header-btns{display:flex;gap:8px;flex-wrap:wrap}
-  .btn-primary{background:#4f46e5;border:none;border-radius:8px;color:#fff;padding:8px 14px;font-size:13px;font-weight:600}
-  .btn-secondary{background:transparent;border:1px solid #4f46e5;border-radius:8px;color:#a5b4fc;padding:8px 14px;font-size:13px}
-  .btn-accent{background:transparent;border:1px solid #7c3aed;border-radius:8px;color:#c4b5fd;padding:8px 14px;font-size:13px}
-  .btn-primary:hover{background:#4338ca}
-  .btn-secondary:hover{background:#1e1b4b}
-  .btn-accent:hover{background:#1e1b4b}
+.header{background:#12122a;border-bottom:1px solid #1e1e3a;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:50}
+.logo{font-size:20px;font-weight:700;color:#a5b4fc;letter-spacing:-0.5px}
+.subtitle{font-size:12px;color:#64748b;margin-top:2px}
+.header-btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn-primary{background:#4f46e5;border:none;border-radius:8px;color:#fff;padding:8px 14px;font-size:13px;font-weight:600}
+.btn-secondary{background:transparent;border:1px solid #4f46e5;border-radius:8px;color:#a5b4fc;padding:8px 14px;font-size:13px}
+.btn-ghost{background:transparent;border:1px solid #2d2d4e;border-radius:8px;color:#64748b;padding:8px 14px;font-size:13px}
+.btn-primary:hover{background:#4338ca}
+.btn-secondary:hover{background:#1e1b4b}
+.btn-ghost:hover{background:#1a1a2e}
 
-  /* Toast */
-  .toast{position:fixed;bottom:24px;right:20px;background:#1e1b4b;border:1px solid #4f46e5;border-radius:10px;padding:12px 18px;font-size:13px;color:#a5b4fc;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none}
-  .toast.show{opacity:1}
+.stats{display:flex;gap:12px;padding:16px 20px;flex-wrap:wrap}
+.stat-card{background:#12122a;border:1px solid #1e1e3a;border-radius:10px;padding:10px 18px;min-width:90px;text-align:center}
+.stat-val{font-size:22px;font-weight:700;color:#a5b4fc}
+.stat-lbl{font-size:11px;color:#64748b;margin-top:2px}
 
-  /* Stats */
-  .stats{display:flex;gap:12px;padding:16px 20px;flex-wrap:wrap}
-  .stat-card{background:#12122a;border:1px solid #1e1e3a;border-radius:10px;padding:10px 18px;min-width:90px;text-align:center}
-  .stat-val{font-size:22px;font-weight:700;color:#a5b4fc}
-  .stat-lbl{font-size:11px;color:#64748b;margin-top:2px}
+.tabs{display:flex;gap:4px;padding:0 20px 0;border-bottom:1px solid #1e1e3a;margin-bottom:0}
+.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:#64748b;padding:10px 18px;font-size:13px;font-weight:500;transition:all 0.15s;margin-bottom:-1px}
+.tab.active{color:#a5b4fc;border-bottom-color:#4f46e5}
+.tab:hover:not(.active){color:#94a3b8}
 
-  /* Tabs */
-  .tabs{display:flex;gap:4px;padding:0 20px 14px;border-bottom:1px solid #1e1e3a}
-  .tab{background:transparent;border:1px solid transparent;border-radius:8px;color:#64748b;padding:6px 16px;font-size:13px;transition:all 0.15s}
-  .tab.active{background:#1e1b4b;border-color:#4f46e5;color:#a5b4fc}
+.toast{position:fixed;bottom:24px;right:20px;background:#1e1b4b;border:1px solid #4f46e5;border-radius:10px;padding:12px 18px;font-size:13px;color:#a5b4fc;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none}
+.toast.show{opacity:1}
 
-  /* Filters */
-  .filters{display:flex;gap:8px;padding:16px 20px;flex-wrap:wrap}
-  .filters input,.filters select{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:8px 12px;color:#e2e8f0;font-size:13px}
-  .filters input{flex:1 1 160px}
-  .filters select{cursor:pointer}
-  .filters input:focus,.filters select:focus{outline:1px solid #4f46e5}
+/* PESTAÑA GÉNERO / DASHBOARD */
+.genre-section{padding:20px 20px 0}
+.genre-heading{font-size:15px;font-weight:600;color:#a5b4fc;padding:0 0 10px;border-bottom:1px solid #1e1e3a;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.genre-emoji{font-size:18px}
+.genre-count{font-size:11px;color:#4a4a6a;font-weight:400;margin-left:auto}
+.dash-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-bottom:24px}
 
-  /* Grid */
-  .grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));padding:0 20px}
+.dash-card{background:#12122a;border:1px solid #1e1e3a;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.dash-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.dash-title{font-weight:600;font-size:14px;color:#e2e8f0;line-height:1.3}
+.dash-year{font-size:11px;color:#4a4a6a}
+.dash-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.badge{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500}
+.badge-vista{background:#1a3a1a;color:#4ade80;border:1px solid #166534}
+.badge-pendiente{background:#2a2a1a;color:#facc15;border:1px solid #854d0e}
+.badge-type{background:#1e2a3a;color:#7dd3fc;border:1px solid #1e40af}
+.dash-synopsis{font-size:12px;color:#94a3b8;line-height:1.65;border-left:2px solid #2d2d4e;padding-left:10px}
+.dash-stars{display:flex;gap:2px}
+.dash-star{font-size:14px;color:#f5c518}
+.dash-star.dim{color:#2d2d4e}
 
-  /* Card */
-  .card{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s}
-  .card:hover{border-color:#4f46e5}
-  .card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-  .card-title{font-weight:600;font-size:15px;color:#e2e8f0}
-  .card-year{font-size:12px;color:#64748b}
-  .card-genre{font-size:12px;color:#7c3aed;margin-top:3px}
-  .card-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px}
-  .badge{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500}
-  .badge-vista{background:#1a3a1a;color:#4ade80;border:1px solid #166534}
-  .badge-pendiente{background:#2a2a1a;color:#facc15;border:1px solid #854d0e}
-  .badge-type{background:#1e2a3a;color:#7dd3fc;border:1px solid #1e40af}
-  .synopsis{font-size:13px;color:#94a3b8;line-height:1.6;border-left:2px solid #4f46e5;padding-left:10px}
-  .card-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-  .stars{display:flex;gap:2px}
-  .star{font-size:18px;color:#444;cursor:pointer;transition:color 0.1s;background:none;border:none;padding:0;line-height:1}
-  .star.lit{color:#f5c518}
-  .card-actions{display:flex;gap:7px}
-  .btn-sm{font-size:11px;padding:3px 10px;border-radius:6px;background:transparent}
-  .btn-sm-purple{border:1px solid #4f46e5;color:#a5b4fc}
-  .btn-sm-gray{border:1px solid #2d2d4e;color:#64748b}
-  .btn-sm-purple:hover{background:#1e1b4b}
-  .btn-sm-gray:hover{background:#1a1a2e}
-  .btn-delete{background:none;border:none;color:#4a4a6a;font-size:16px;padding:0 2px;line-height:1}
-  .btn-delete:hover{color:#ef4444}
+/* PESTAÑA RECOMENDACIONES */
+.recs-intro{padding:20px 20px 0;font-size:13px;color:#64748b}
+.rec-genre-section{padding:16px 20px 0}
+.rec-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-bottom:24px}
+.rec-card{background:#12122a;border:1px solid #1e1e3a;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.rec-title{font-weight:600;font-size:14px;color:#e2e8f0}
+.rec-meta{font-size:11px;color:#4a4a6a}
+.rec-synopsis{font-size:12px;color:#94a3b8;line-height:1.65}
+.rec-reason{font-size:11px;color:#4ade80;border-left:2px solid #166534;padding-left:8px;margin-top:2px;line-height:1.5}
 
-  /* Empty */
-  .empty{text-align:center;padding:60px 20px;color:#4a4a6a;grid-column:1/-1}
-  .empty-icon{font-size:48px;margin-bottom:12px}
-  .empty-title{font-size:16px;color:#64748b;margin-bottom:6px}
-  .empty-sub{font-size:13px}
+/* PESTAÑA MI LISTA */
+.filters{display:flex;gap:8px;padding:16px 20px;flex-wrap:wrap}
+.filters input,.filters select{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:8px 12px;color:#e2e8f0;font-size:13px}
+.filters input{flex:1 1 160px}
+.filters input:focus,.filters select:focus{outline:1px solid #4f46e5}
+.list-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));padding:0 20px}
 
-  /* Modal */
-  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
-  .modal{background:#12122a;border:1px solid #2d2d4e;border-radius:14px;padding:24px;width:100%;max-width:420px;display:flex;flex-direction:column;gap:14px;max-height:90vh;overflow-y:auto}
-  .modal-header{display:flex;justify-content:space-between;align-items:center}
-  .modal-title{font-weight:600;font-size:16px;color:#e2e8f0}
-  .modal label{font-size:12px;color:#7c3aed;display:block;margin-bottom:4px}
-  .modal input,.modal select,.modal textarea{width:100%;background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:8px 12px;color:#e2e8f0;font-size:14px}
-  .modal input:focus,.modal select:focus,.modal textarea:focus{outline:1px solid #4f46e5}
-  .modal textarea{resize:vertical}
+.card{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s}
+.card:hover{border-color:#4f46e5}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card-title{font-weight:600;font-size:15px;color:#e2e8f0}
+.card-year{font-size:12px;color:#64748b}
+.card-genre{font-size:12px;color:#7c3aed;margin-top:3px}
+.card-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.synopsis-block{font-size:13px;color:#94a3b8;line-height:1.6;border-left:2px solid #4f46e5;padding-left:10px}
+.card-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.stars{display:flex;gap:2px}
+.star{font-size:18px;color:#444;cursor:pointer;transition:color 0.1s;background:none;border:none;padding:0;line-height:1}
+.star.lit{color:#f5c518}
+.card-actions{display:flex;gap:7px}
+.btn-sm{font-size:11px;padding:3px 10px;border-radius:6px;background:transparent}
+.btn-sm-purple{border:1px solid #4f46e5;color:#a5b4fc}
+.btn-sm-gray{border:1px solid #2d2d4e;color:#64748b}
+.btn-sm-purple:hover{background:#1e1b4b}
+.btn-sm-gray:hover{background:#12122a}
+.btn-delete{background:none;border:none;color:#4a4a6a;font-size:15px;padding:0 2px;line-height:1}
+.btn-delete:hover{color:#ef4444}
+.btn-edit{background:none;border:none;color:#4f46e5;font-size:14px;padding:0 2px;line-height:1}
+.btn-edit:hover{color:#a5b4fc}
 
-  /* Genre sections */
-  .genre-section{padding:0 20px;margin-bottom:8px}
-  .genre-heading{font-size:13px;font-weight:600;color:#7c3aed;padding:16px 0 8px;border-bottom:1px solid #1e1e3a;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-  .genre-count{font-size:11px;color:#4a4a6a;font-weight:400}
+.empty{text-align:center;padding:60px 20px;color:#4a4a6a;grid-column:1/-1}
+.empty-icon{font-size:48px;margin-bottom:12px}
 
-  /* Recs */
-  .recs-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));padding:20px}
-  .rec-card{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
-  .rec-reason{font-size:12px;color:#4ade80;border-left:2px solid #166534;padding-left:8px;margin-top:4px}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal{background:#12122a;border:1px solid #2d2d4e;border-radius:14px;padding:24px;width:100%;max-width:420px;display:flex;flex-direction:column;gap:14px;max-height:90vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center}
+.modal-title-text{font-weight:600;font-size:16px;color:#e2e8f0}
+.modal label{font-size:12px;color:#7c3aed;display:block;margin-bottom:4px}
+.modal input,.modal select,.modal textarea{width:100%;background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:8px 12px;color:#e2e8f0;font-size:14px}
+.modal input:focus,.modal select:focus,.modal textarea:focus{outline:1px solid #4f46e5}
+.modal textarea{resize:vertical}
 
-  /* Import area */
-  .import-area{margin:16px 20px;background:#12122a;border:1px dashed #2d2d4e;border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:border-color 0.2s}
-  .import-area:hover{border-color:#4f46e5}
-  .import-area input{display:none}
-
-  @media(max-width:500px){
-    .header{padding:12px 14px}
-    .stats,.filters,.grid,.genre-section,.recs-grid{padding-left:14px;padding-right:14px}
-    .grid{grid-template-columns:1fr}
-  }
+@media(max-width:500px){
+  .header{padding:12px 14px}
+  .dash-grid,.rec-grid,.list-grid{grid-template-columns:1fr}
+  .tab{padding:10px 12px;font-size:12px}
+}
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <div class="header">
   <div>
     <div class="logo">🎬 CineLog</div>
@@ -122,372 +125,314 @@
   <div class="header-btns">
     <button class="btn-primary" onclick="openAddModal()">+ Agregar</button>
     <button class="btn-secondary" onclick="exportData()">⬇ Exportar</button>
-    <button class="btn-accent" onclick="document.getElementById('importFile').click()">⬆ Importar</button>
+    <button class="btn-ghost" onclick="document.getElementById('importFile').click()">⬆ Importar</button>
     <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)"/>
   </div>
 </div>
 
-<!-- Stats -->
 <div class="stats" id="stats"></div>
 
-<!-- Tabs -->
 <div class="tabs">
-  <button class="tab active" id="tab-lista" onclick="switchTab('lista')">Mi lista</button>
-  <button class="tab" id="tab-generos" onclick="switchTab('generos')">Por género</button>
+  <button class="tab active" id="tab-generos" onclick="switchTab('generos')">Por género</button>
+  <button class="tab" id="tab-recs" onclick="switchTab('recs')">Recomendaciones</button>
+  <button class="tab" id="tab-lista" onclick="switchTab('lista')">Mi lista</button>
 </div>
 
-<!-- Filters (lista tab) -->
-<div class="filters" id="filters-bar">
-  <input type="text" id="searchInput" placeholder="🔍 Buscar título..." oninput="render()"/>
-  <select id="filterStatus" onchange="render()">
-    <option value="">Estado: Todos</option>
-    <option value="Vista">Vista</option>
-    <option value="Pendiente">Pendiente</option>
-  </select>
-  <select id="filterType" onchange="render()">
-    <option value="">Tipo: Todos</option>
-    <option value="Película">Película</option>
-    <option value="Serie">Serie</option>
-  </select>
-  <select id="filterGenre" onchange="render()">
-    <option value="">Género: Todos</option>
-  </select>
-</div>
-
-<!-- Content -->
 <div id="content"></div>
 
-<!-- Modal agregar/editar -->
+<!-- Modal -->
 <div class="modal-overlay" id="modal" style="display:none" onclick="closeModalOutside(event)">
   <div class="modal">
     <div class="modal-header">
-      <span class="modal-title" id="modal-title">Agregar título</span>
+      <span class="modal-title-text" id="modal-title">Agregar título</span>
       <button class="btn-delete" onclick="closeModal()">✕</button>
     </div>
-    <div>
-      <label>Título *</label>
-      <input type="text" id="f-title" placeholder="Nombre de la película o serie"/>
-    </div>
-    <div>
-      <label>Año</label>
-      <input type="number" id="f-year" placeholder="2024" min="1900" max="2030"/>
-    </div>
-    <div>
-      <label>Tipo</label>
-      <select id="f-type">
-        <option>Película</option>
-        <option>Serie</option>
-      </select>
-    </div>
-    <div>
-      <label>Género</label>
+    <div><label>Título *</label><input type="text" id="f-title"/></div>
+    <div><label>Año</label><input type="number" id="f-year" min="1900" max="2030"/></div>
+    <div><label>Tipo</label>
+      <select id="f-type"><option>Película</option><option>Serie</option></select></div>
+    <div><label>Género</label>
       <select id="f-genre">
         <option>Acción</option><option>Comedia</option><option>Drama</option>
         <option>Terror</option><option>Ciencia ficción</option><option>Thriller</option>
         <option>Animación</option><option>Documental</option><option>Romance</option>
         <option>Fantasía</option><option>Crimen</option>
-      </select>
-    </div>
-    <div>
-      <label>Estado</label>
-      <select id="f-status">
-        <option>Pendiente</option>
-        <option>Vista</option>
-      </select>
-    </div>
-    <div>
-      <label>Sinopsis (opcional)</label>
-      <textarea id="f-synopsis" rows="3" placeholder="Breve descripción..."></textarea>
-    </div>
+      </select></div>
+    <div><label>Estado</label>
+      <select id="f-status"><option>Pendiente</option><option>Vista</option></select></div>
+    <div><label>Sinopsis</label><textarea id="f-synopsis" rows="3"></textarea></div>
     <button class="btn-primary" style="width:100%;padding:10px;font-size:14px;border-radius:8px" onclick="saveModal()">Guardar</button>
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
 const GENRES = ["Acción","Comedia","Drama","Terror","Ciencia ficción","Thriller","Animación","Documental","Romance","Fantasía","Crimen"];
-const STORAGE_KEY = "cinelog_data";
+const GENRE_EMOJI = {Acción:"⚡",Comedia:"😂",Drama:"🎭",Terror:"👻","Ciencia ficción":"🚀",Thriller:"🔪",Animación:"✨",Documental:"📽️",Romance:"❤️",Fantasía:"🧙",Crimen:"🕵️"};
+const STORAGE_KEY = "cinelog_v2";
 
-const INITIAL_DATA = [
-  {id:1,title:"Paradise",year:2023,type:"Película",genre:"Ciencia ficción",status:"Vista",rating:0,synopsis:"En un futuro distópico, una compañía ofrece años de vida extra a cambio de tiempo robado a los pobres. Una mujer lucha por recuperar lo que le fue arrebatado."},
-  {id:2,title:"Palm Springs",year:2020,type:"Película",genre:"Comedia",status:"Pendiente",rating:0,synopsis:"Dos desconocidos quedan atrapados en un bucle temporal durante una boda en Palm Springs. Comedia romántica con toque de ciencia ficción y mucho humor negro."},
-  {id:3,title:"Marty Supreme",year:2024,type:"Película",genre:"Drama",status:"Pendiente",rating:0,synopsis:"Un excéntrico campeón de ping pong busca redención y gloria en los circuitos alternativos de Nueva York. Drama indie con actuaciones memorables."},
-  {id:4,title:"The Madison",year:2024,type:"Serie",genre:"Drama",status:"Vista",rating:0,synopsis:"Serie centrada en los entresijos de poder y ambición dentro de un lujoso hotel de Manhattan. Intrigas, secretos y relaciones peligrosas entre sus habitantes."},
-  {id:5,title:"The Pitt",year:2025,type:"Serie",genre:"Drama",status:"Vista",rating:0,synopsis:"Drama médico ambientado en urgencias de un hospital público de Pittsburgh. Muestra la crudeza del sistema de salud americano en tiempo real."},
-  {id:6,title:"Knives Out",year:2019,type:"Película",genre:"Thriller",status:"Vista",rating:0,synopsis:"Cuando el patriarca de una excéntrica familia adinerada aparece muerto, el detective Benoit Blanc investiga un caso lleno de giros inesperados. Whodunit moderno y brillante."},
-  {id:7,title:"Weapons",year:2024,type:"Película",genre:"Thriller",status:"Vista",rating:0,synopsis:"Thriller coral donde varias historias aparentemente desconectadas convergen alrededor de un arma. Tensión escalofriante con estructura narrativa fragmentada."},
-  {id:8,title:"Sinners",year:2025,type:"Película",genre:"Terror",status:"Vista",rating:0,synopsis:"Dos gemelos regresan a su pueblo natal en el sur de Mississippi en los años 30, pero descubren que algo sobrenatural y oscuro acecha la región."},
-  {id:9,title:"La Oficina",year:2005,type:"Serie",genre:"Comedia",status:"Vista",rating:0,synopsis:"Mockumentary sobre la vida cotidiana de empleados bajo el mando de un jefe incompetente pero carismático. Versión española del clásico de Ricky Gervais."},
-  {id:10,title:"F1",year:2025,type:"Película",genre:"Acción",status:"Vista",rating:0,synopsis:"Un piloto retirado regresa a la Fórmula 1 junto a un joven talento. Producida con acceso real a las carreras del campeonato mundial, protagonizada por Brad Pitt."},
-  {id:11,title:"Top Gun: Maverick",year:2022,type:"Película",genre:"Acción",status:"Vista",rating:0,synopsis:"El legendario piloto Maverick regresa para entrenar a una nueva generación de aviadores. Secuela espectacular llena de adrenalina y emoción."},
-  {id:12,title:"The White Lotus",year:2021,type:"Serie",genre:"Drama",status:"Vista",rating:0,synopsis:"Antología de humor oscuro que sigue a huéspedes y empleados de un resort de lujo. Expone la hipocresía y privilegios de la clase alta americana."},
-  {id:13,title:"Fargo",year:2014,type:"Serie",genre:"Crimen",status:"Vista",rating:0,synopsis:"Antología criminal inspirada en la película de los Coen. Cada temporada presenta un nuevo caso en el gélido Medio Oeste americano con personajes excéntricos."},
-  {id:14,title:"The Killer",year:2023,type:"Película",genre:"Thriller",status:"Pendiente",rating:0,synopsis:"Un asesino a sueldo meticuloso comete un error y debe enfrentar las consecuencias. David Fincher dirige este thriller frío y estilizado con Michael Fassbender."},
-  {id:15,title:"Seven",year:1995,type:"Película",genre:"Thriller",status:"Pendiente",rating:0,synopsis:"Dos detectives persiguen a un asesino en serie que basa sus crímenes en los siete pecados capitales. Obra maestra del thriller oscuro dirigida por David Fincher."},
-  {id:16,title:"La Lista de Schindler",year:1993,type:"Película",genre:"Drama",status:"Pendiente",rating:0,synopsis:"La historia real de Oskar Schindler, empresario alemán que salvó la vida de más de mil judíos durante el Holocausto. Drama histórico esencial de Steven Spielberg."},
+const INITIAL = [{"id":1,"title":"Paradise","year":2023,"type":"Serie","genre":"Ciencia ficción","status":"Vista","rating":5,"synopsis":"En una tranquila comunidad conviven algunas de las personas más prominentes del mundo. La calma estalla cuando se comete un asesinato y da comienzo una delicada investigación."},{"id":2,"title":"Palm Springs","year":2020,"type":"Película","genre":"Comedia","status":"Pendiente","rating":0,"synopsis":"Dos desconocidos quedan atrapados en un bucle temporal durante una boda en Palm Springs. Comedia romántica con toque de ciencia ficción y mucho humor negro."},{"id":3,"title":"Marty Supreme","year":2024,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"Un excéntrico campeón de ping pong busca redención y gloria en los circuitos alternativos de Nueva York. Drama indie con actuaciones memorables."},{"id":4,"title":"The Madison","year":2026,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"Se explora el duelo y la conexión humana desde una familia de Nueva York, situada en el río Madison, en Montana."},{"id":5,"title":"The Pitt","year":2025,"type":"Serie","genre":"Drama","status":"Vista","rating":4,"synopsis":"Drama médico ambientado en urgencias de un hospital público de Pittsburgh. Muestra la crudeza del sistema de salud americano en tiempo real."},{"id":6,"title":"Knives Out (trilogía)","year":2019,"type":"Película","genre":"Thriller","status":"Vista","rating":3,"synopsis":"Cuando el patriarca de una excéntrica familia adinerada aparece muerto, el detective Benoit Blanc investiga un caso lleno de giros inesperados. Whodunit moderno y brillante."},{"id":7,"title":"Weapons","year":2025,"type":"Película","genre":"Thriller","status":"Vista","rating":3,"synopsis":"Todos los niños de la clase, excepto uno, desaparecen misteriosamente en la misma noche y exactamente a la misma hora. La comunidad se pregunta quién o qué está detrás de la desaparición."},{"id":8,"title":"Sinners","year":2025,"type":"Película","genre":"Terror","status":"Vista","rating":5,"synopsis":"Dos gemelos regresan a su pueblo natal en el sur de Mississippi en los años 30, pero descubren que algo sobrenatural y oscuro acecha la región."},{"id":9,"title":"La Oficina","year":2026,"type":"Serie","genre":"Comedia","status":"Vista","rating":5,"synopsis":"Mockumentary sobre la vida cotidiana de empleados bajo el mando de un jefe incompetente pero carismático. Versión española del clásico de Ricky Gervais."},{"id":10,"title":"F1","year":2025,"type":"Película","genre":"Acción","status":"Vista","rating":4,"synopsis":"Un piloto retirado regresa a la Fórmula 1 junto a un joven talento. Producida con acceso real a las carreras del campeonato mundial, protagonizada por Brad Pitt."},{"id":11,"title":"Top Gun: Maverick","year":2022,"type":"Película","genre":"Acción","status":"Vista","rating":4,"synopsis":"El legendario piloto Maverick regresa para entrenar a una nueva generación de aviadores. Secuela espectacular llena de adrenalina y emoción."},{"id":12,"title":"The White Lotus","year":2021,"type":"Serie","genre":"Drama","status":"Vista","rating":4,"synopsis":"Antología de humor oscuro que sigue a huéspedes y empleados de un resort de lujo. Expone la hipocresía y privilegios de la clase alta americana."},{"id":13,"title":"Fargo","year":2014,"type":"Serie","genre":"Crimen","status":"Vista","rating":4,"synopsis":"Antología criminal inspirada en la película de los Coen. Cada temporada presenta un nuevo caso en el gélido Medio Oeste americano con personajes excéntricos."},{"id":14,"title":"The Killer","year":2023,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Un asesino a sueldo meticuloso comete un error y debe enfrentar las consecuencias. David Fincher dirige este thriller frío y estilizado con Michael Fassbender."},{"id":15,"title":"Seven","year":1995,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Dos detectives persiguen a un asesino en serie que basa sus crímenes en los siete pecados capitales. Obra maestra del thriller oscuro dirigida por David Fincher."},{"id":16,"title":"La Lista de Schindler","year":1993,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"La historia real de Oskar Schindler, empresario alemán que salvó la vida de más de mil judíos durante el Holocausto. Drama histórico esencial de Steven Spielberg."}];
+
+const RECS = [
+  {title:"Severance",year:2022,type:"Serie",genre:"Ciencia ficción",synopsis:"Los empleados de Lumon Industries se someten a un procedimiento que separa quirúrgicamente sus memorias laborales de las personales.",reason:"Te encantó Paradise — Severance tiene la misma tensión de misterio y thriller psicológico en una comunidad aparentemente perfecta."},
+  {title:"The Bear",year:2022,type:"Serie",genre:"Drama",synopsis:"Un chef de alta cocina regresa a Chicago para hacerse cargo del restaurante familiar tras la muerte de su hermano. Ritmo frenético y actuaciones excepcionales.",reason:"Calificaste The Pitt con 4★ — The Bear tiene esa misma energía de presión extrema en tiempo real dentro de un ambiente profesional."},
+  {title:"Succession",year:2018,type:"Serie",genre:"Drama",synopsis:"La familia Roy, propietaria de un imperio mediático, entra en guerra cuando el patriarca anuncia su retiro. Poder, traición y humor negro en su máxima expresión.",reason:"Tus 5★ a The Madison y Paradise muestran que te atrapan las dinámicas de poder entre familias — Succession es la mejor de ese género."},
+  {title:"Get Out",year:2017,type:"Película",genre:"Terror",synopsis:"Un joven afroamericano visita a la familia de su novia blanca y descubre que algo perturbador y aterrador se esconde detrás de su aparente cordialidad.",reason:"Le diste 5★ a Sinners — Get Out tiene esa misma mezcla de terror sobrenatural con crítica social profunda y un giro devastador."},
+  {title:"Prisoners",year:2013,type:"Película",genre:"Thriller",synopsis:"Cuando dos niñas desaparecen en Acción de Gracias, el desesperado padre decide tomar la justicia por su mano mientras el detective a cargo sigue sus propias pistas.",reason:"Calificaste Weapons y Knives Out — Prisoners lleva el thriller de investigación al límite moral y emocional, dirigido por Denis Villeneuve."},
+  {title:"True Detective T1",year:2014,type:"Serie",genre:"Crimen",synopsis:"Dos detectives de personalidades opuestas investigan durante 17 años una serie de crímenes rituales en el sur de Louisiana. Atmósfera oscura e hipnótica.",reason:"Tu 4★ a Fargo indica que aprecias el crimen con profundidad narrativa — True Detective T1 es la cima del género en televisión."},
 ];
 
 let items = [];
 let editingId = null;
 let nextId = 200;
-let activeTab = "lista";
+let activeTab = "generos";
 
 function load() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      items = parsed.items || INITIAL_DATA;
-      nextId = parsed.nextId || 200;
-    } else {
-      items = INITIAL_DATA;
-    }
-  } catch { items = INITIAL_DATA; }
+    const s = localStorage.getItem(STORAGE_KEY);
+    if (s) { const p = JSON.parse(s); items = p.items||INITIAL; nextId = p.nextId||200; }
+    else { items = JSON.parse(JSON.stringify(INITIAL)); }
+  } catch { items = JSON.parse(JSON.stringify(INITIAL)); }
 }
 
-function save() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({items, nextId}));
-}
+function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify({items,nextId})); }
 
 function exportData() {
-  const blob = new Blob([JSON.stringify({items, nextId}, null, 2)], {type:"application/json"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "cinelog_backup.json";
-  a.click();
+  const blob = new Blob([JSON.stringify({items,nextId},null,2)],{type:"application/json"});
+  const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="cinelog_backup.json"; a.click();
   showToast("Lista exportada ✓");
 }
 
 function importData(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+  const file = e.target.files[0]; if(!file) return;
   const r = new FileReader();
   r.onload = ev => {
     try {
-      const parsed = JSON.parse(ev.target.result);
-      if (parsed.items) {
-        items = parsed.items;
-        nextId = parsed.nextId || 200;
-        save();
-        render();
-        renderStats();
-        showToast("Lista importada ✓");
-      }
+      const p = JSON.parse(ev.target.result);
+      if(p.items){items=p.items;nextId=p.nextId||200;save();renderStats();render();showToast("Lista importada ✓");}
     } catch { showToast("Archivo inválido"); }
   };
-  r.readAsText(file);
-  e.target.value = "";
+  r.readAsText(file); e.target.value="";
 }
 
-function showToast(msg) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2500);
+function showToast(msg){
+  const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2500);
 }
 
-function openAddModal() {
-  editingId = null;
-  document.getElementById("modal-title").textContent = "Agregar título";
-  document.getElementById("f-title").value = "";
-  document.getElementById("f-year").value = "";
-  document.getElementById("f-type").value = "Película";
-  document.getElementById("f-genre").value = "Acción";
-  document.getElementById("f-status").value = "Pendiente";
-  document.getElementById("f-synopsis").value = "";
-  document.getElementById("modal").style.display = "flex";
+function openAddModal(){
+  editingId=null;
+  document.getElementById("modal-title").textContent="Agregar título";
+  ["f-title","f-synopsis"].forEach(id=>document.getElementById(id).value="");
+  document.getElementById("f-year").value="";
+  document.getElementById("f-type").value="Película";
+  document.getElementById("f-genre").value="Acción";
+  document.getElementById("f-status").value="Pendiente";
+  document.getElementById("modal").style.display="flex";
 }
 
-function openEditModal(id) {
-  const item = items.find(i => i.id === id);
-  if (!item) return;
-  editingId = id;
-  document.getElementById("modal-title").textContent = "Editar título";
-  document.getElementById("f-title").value = item.title;
-  document.getElementById("f-year").value = item.year || "";
-  document.getElementById("f-type").value = item.type;
-  document.getElementById("f-genre").value = item.genre;
-  document.getElementById("f-status").value = item.status;
-  document.getElementById("f-synopsis").value = item.synopsis || "";
-  document.getElementById("modal").style.display = "flex";
+function openEditModal(id){
+  const item=items.find(i=>i.id===id); if(!item) return;
+  editingId=id;
+  document.getElementById("modal-title").textContent="Editar título";
+  document.getElementById("f-title").value=item.title;
+  document.getElementById("f-year").value=item.year||"";
+  document.getElementById("f-type").value=item.type;
+  document.getElementById("f-genre").value=item.genre;
+  document.getElementById("f-status").value=item.status;
+  document.getElementById("f-synopsis").value=item.synopsis||"";
+  document.getElementById("modal").style.display="flex";
 }
 
-function closeModal() { document.getElementById("modal").style.display = "none"; }
-function closeModalOutside(e) { if (e.target.id === "modal") closeModal(); }
+function closeModal(){document.getElementById("modal").style.display="none";}
+function closeModalOutside(e){if(e.target.id==="modal")closeModal();}
 
-function saveModal() {
-  const title = document.getElementById("f-title").value.trim();
-  if (!title) { showToast("El título es obligatorio"); return; }
-  const data = {
-    title,
-    year: parseInt(document.getElementById("f-year").value) || null,
-    type: document.getElementById("f-type").value,
-    genre: document.getElementById("f-genre").value,
-    status: document.getElementById("f-status").value,
-    synopsis: document.getElementById("f-synopsis").value.trim(),
-  };
-  if (editingId) {
-    items = items.map(i => i.id === editingId ? {...i, ...data} : i);
-    showToast("Guardado ✓");
-  } else {
-    items.push({...data, id: nextId++, rating: 0});
-    showToast("Agregado ✓");
+function saveModal(){
+  const title=document.getElementById("f-title").value.trim();
+  if(!title){showToast("El título es obligatorio");return;}
+  const data={title,year:parseInt(document.getElementById("f-year").value)||null,type:document.getElementById("f-type").value,genre:document.getElementById("f-genre").value,status:document.getElementById("f-status").value,synopsis:document.getElementById("f-synopsis").value.trim()};
+  if(editingId){items=items.map(i=>i.id===editingId?{...i,...data}:i);showToast("Guardado ✓");}
+  else{items.push({...data,id:nextId++,rating:0});showToast("Agregado ✓");}
+  save();renderStats();render();closeModal();
+}
+
+function deleteItem(id){
+  if(!confirm("¿Eliminar este título?"))return;
+  items=items.filter(i=>i.id!==id); save();renderStats();render(); showToast("Eliminado");
+}
+
+function toggleStatus(id){
+  items=items.map(i=>i.id===id?{...i,status:i.status==="Vista"?"Pendiente":"Vista"}:i);
+  save();renderStats();render();
+}
+
+function setRating(id,val){
+  const item=items.find(i=>i.id===id);
+  items=items.map(i=>i.id===id?{...i,rating:i.rating===val?0:val}:i);
+  save();renderStats();render();
+}
+
+function toggleSyn(id){
+  const el=document.getElementById("syn-"+id);
+  if(el) el.style.display=el.style.display==="none"?"block":"none";
+}
+
+function starsHTML(rating, total=5, size=14){
+  return [1,2,3,4,5].map(s=>`<span style="font-size:${size}px;color:${rating>=s?"#f5c518":"#2d2d4e"}">★</span>`).join("");
+}
+
+/* ── RENDER GENEROS (dashboard) ── */
+function renderGeneros(){
+  const byGenre={};
+  items.forEach(i=>{if(!byGenre[i.genre])byGenre[i.genre]=[];byGenre[i.genre].push(i);});
+  const present=GENRES.filter(g=>byGenre[g]);
+  if(!present.length){
+    return `<div class="empty"><div class="empty-icon">🎬</div><p>Agrega títulos para verlos por género</p></div>`;
   }
-  save(); render(); renderStats(); closeModal();
+  return present.map(g=>{
+    const list=byGenre[g];
+    const cards=list.map(item=>`
+      <div class="dash-card">
+        <div class="dash-card-top">
+          <div>
+            <div class="dash-title">${item.title} ${item.year?`<span class="dash-year">(${item.year})</span>`:""}</div>
+            <div class="dash-badges" style="margin-top:5px">
+              <span class="badge ${item.status==="Vista"?"badge-vista":"badge-pendiente"}">${item.status}</span>
+              <span class="badge badge-type">${item.type}</span>
+            </div>
+          </div>
+          <div style="min-width:60px;text-align:right">${item.rating?starsHTML(item.rating):'<span style="font-size:11px;color:#4a4a6a">Sin calificar</span>'}</div>
+        </div>
+        ${item.synopsis?`<p class="dash-synopsis">${item.synopsis}</p>`:""}
+      </div>`).join("");
+    return `<div class="genre-section">
+      <div class="genre-heading"><span class="genre-emoji">${GENRE_EMOJI[g]||"🎬"}</span>${g}<span class="genre-count">${list.length} título${list.length>1?"s":""}</span></div>
+      <div class="dash-grid">${cards}</div>
+    </div>`;
+  }).join("");
 }
 
-function deleteItem(id) {
-  if (!confirm("¿Eliminar este título?")) return;
-  items = items.filter(i => i.id !== id);
-  save(); render(); renderStats();
-  showToast("Eliminado");
+/* ── RENDER RECOMENDACIONES ── */
+function renderRecs(){
+  const byGenre={};
+  RECS.forEach(r=>{if(!byGenre[r.genre])byGenre[r.genre]=[];byGenre[r.genre].push(r);});
+  const sections=Object.keys(byGenre).map(g=>{
+    const cards=byGenre[g].map(r=>`
+      <div class="rec-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+          <div>
+            <div class="rec-title">${r.title}</div>
+            <div class="rec-meta">${r.year} · ${r.type}</div>
+          </div>
+          <span class="badge badge-type">${r.type}</span>
+        </div>
+        <p class="rec-synopsis">${r.synopsis}</p>
+        <div class="rec-reason">💡 ${r.reason}</div>
+        <button onclick="addFromRec(${JSON.stringify(r).replace(/"/g,'&quot;')})" style="margin-top:4px;background:transparent;border:1px solid #4f46e5;border-radius:7px;color:#a5b4fc;padding:5px 12px;font-size:11px;cursor:pointer;width:100%">+ Añadir a mi lista</button>
+      </div>`).join("");
+    return `<div class="rec-genre-section">
+      <div class="genre-heading"><span class="genre-emoji">${GENRE_EMOJI[g]||"🎬"}</span>${g}</div>
+      <div class="rec-grid">${cards}</div>
+    </div>`;
+  }).join("");
+  return `<p class="recs-intro" style="padding-top:16px;padding-bottom:4px">Basado en tus calificaciones — picks personalizados para Carlos Andrés.</p>${sections}`;
 }
 
-function toggleStatus(id) {
-  items = items.map(i => i.id === id ? {...i, status: i.status === "Vista" ? "Pendiente" : "Vista"} : i);
-  save(); render(); renderStats();
+function addFromRec(r){
+  if(items.find(i=>i.title.toLowerCase()===r.title.toLowerCase())){showToast("Ya está en tu lista");return;}
+  items.push({id:nextId++,title:r.title,year:r.year,type:r.type,genre:r.genre,status:"Pendiente",rating:0,synopsis:r.synopsis});
+  save();renderStats();showToast(`"${r.title}" añadida ✓`);
 }
 
-function setRating(id, val) {
-  const item = items.find(i => i.id === id);
-  const newRating = item.rating === val ? 0 : val;
-  items = items.map(i => i.id === id ? {...i, rating: newRating} : i);
-  save(); render(); renderStats();
-}
-
-function toggleSynopsis(id) {
-  const el = document.getElementById("syn-" + id);
-  if (el) el.style.display = el.style.display === "none" ? "block" : "none";
-}
-
-function buildCard(item) {
-  const stars = [1,2,3,4,5].map(s =>
-    `<button class="star ${item.rating >= s ? 'lit' : ''}" onclick="setRating(${item.id},${s})" title="${s} estrellas">★</button>`
-  ).join("");
-
-  const badgeStatus = item.status === "Vista"
-    ? `<span class="badge badge-vista">Vista</span>`
-    : `<span class="badge badge-pendiente">Pendiente</span>`;
-
-  const synBlock = item.synopsis
-    ? `<p class="synopsis" id="syn-${item.id}" style="display:none">${item.synopsis}</p>`
-    : "";
-
-  const synBtn = item.synopsis
-    ? `<button class="btn-sm btn-sm-gray" onclick="toggleSynopsis(${item.id})">Sinopsis</button>`
-    : "";
+/* ── RENDER MI LISTA ── */
+function renderLista(){
+  const q=document.getElementById("searchInput")?.value?.toLowerCase()||"";
+  const st=document.getElementById("filterStatus")?.value||"";
+  const tp=document.getElementById("filterType")?.value||"";
+  const gn=document.getElementById("filterGenre")?.value||"";
+  const filtered=items.filter(i=>
+    (!q||i.title.toLowerCase().includes(q))&&
+    (!st||i.status===st)&&(!tp||i.type===tp)&&(!gn||i.genre===gn)
+  );
+  const genreOpts=GENRES.map(g=>`<option value="${g}">${g}</option>`).join("");
+  const cards=filtered.length?filtered.map(item=>{
+    const stars=[1,2,3,4,5].map(s=>`<button class="star ${item.rating>=s?"lit":""}" onclick="setRating(${item.id},${s})">★</button>`).join("");
+    return `<div class="card">
+      <div class="card-header">
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+            <span class="card-title">${item.title}</span>
+            ${item.year?`<span class="card-year">(${item.year})</span>`:""}
+          </div>
+          <div class="card-badges" style="margin-top:5px">
+            <span class="badge ${item.status==="Vista"?"badge-vista":"badge-pendiente"}">${item.status}</span>
+            <span class="badge badge-type">${item.type}</span>
+            <span style="font-size:11px;color:#4a4a6a">${item.genre}</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:4px;align-items:center">
+          <button class="btn-edit" onclick="openEditModal(${item.id})" title="Editar">✎</button>
+          <button class="btn-delete" onclick="deleteItem(${item.id})" title="Eliminar">✕</button>
+        </div>
+      </div>
+      ${item.synopsis?`<p class="synopsis-block" id="syn-${item.id}" style="display:none">${item.synopsis}</p>`:""}
+      <div class="card-footer">
+        <div class="stars">${stars}</div>
+        <div class="card-actions">
+          <button class="btn-sm btn-sm-purple" onclick="toggleStatus(${item.id})">${item.status==="Vista"?"→ Pendiente":"→ Vista"}</button>
+          ${item.synopsis?`<button class="btn-sm btn-sm-gray" onclick="toggleSyn(${item.id})">Sinopsis</button>`:""}
+        </div>
+      </div>
+    </div>`;
+  }).join(""):`<div class="empty"><div class="empty-icon">🔍</div><p>Sin resultados</p></div>`;
 
   return `
-  <div class="card">
-    <div class="card-header">
-      <div style="flex:1">
-        <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
-          <span class="card-title">${item.title}</span>
-          ${item.year ? `<span class="card-year">(${item.year})</span>` : ""}
-        </div>
-        <div class="card-badges">
-          ${badgeStatus}
-          <span class="badge badge-type">${item.type}</span>
-          <span style="font-size:11px;color:#4a4a6a">${item.genre}</span>
-        </div>
-      </div>
-      <div style="display:flex;gap:4px;align-items:center">
-        <button class="btn-delete" onclick="openEditModal(${item.id})" title="Editar" style="color:#4f46e5;font-size:14px">✎</button>
-        <button class="btn-delete" onclick="deleteItem(${item.id})" title="Eliminar">✕</button>
-      </div>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="🔍 Buscar título..." oninput="render()" value="${q}"/>
+      <select id="filterStatus" onchange="render()">
+        <option value="">Estado: Todos</option>
+        <option value="Vista" ${st==="Vista"?"selected":""}>Vista</option>
+        <option value="Pendiente" ${st==="Pendiente"?"selected":""}>Pendiente</option>
+      </select>
+      <select id="filterType" onchange="render()">
+        <option value="">Tipo: Todos</option>
+        <option value="Película" ${tp==="Película"?"selected":""}>Película</option>
+        <option value="Serie" ${tp==="Serie"?"selected":""}>Serie</option>
+      </select>
+      <select id="filterGenre" onchange="render()">
+        <option value="">Género: Todos</option>${genreOpts}
+      </select>
     </div>
-    ${synBlock}
-    <div class="card-footer">
-      <div class="stars">${stars}</div>
-      <div class="card-actions">
-        <button class="btn-sm btn-sm-purple" onclick="toggleStatus(${item.id})">
-          ${item.status === "Vista" ? "→ Pendiente" : "→ Vista"}
-        </button>
-        ${synBtn}
-      </div>
-    </div>
-  </div>`;
+    <div class="list-grid">${cards}</div>`;
 }
 
-function getFiltered() {
-  const q = document.getElementById("searchInput").value.toLowerCase();
-  const st = document.getElementById("filterStatus").value;
-  const tp = document.getElementById("filterType").value;
-  const gn = document.getElementById("filterGenre").value;
-  return items.filter(i =>
-    (!q || i.title.toLowerCase().includes(q)) &&
-    (!st || i.status === st) &&
-    (!tp || i.type === tp) &&
-    (!gn || i.genre === gn)
-  );
+/* ── RENDER PRINCIPAL ── */
+function render(){
+  const content=document.getElementById("content");
+  if(activeTab==="generos") content.innerHTML=renderGeneros();
+  else if(activeTab==="recs") content.innerHTML=renderRecs();
+  else content.innerHTML=renderLista();
 }
 
-function render() {
-  const content = document.getElementById("content");
-  const filtersBar = document.getElementById("filters-bar");
-
-  if (activeTab === "lista") {
-    filtersBar.style.display = "flex";
-    const filtered = getFiltered();
-    if (!filtered.length) {
-      content.innerHTML = `<div class="grid"><div class="empty"><div class="empty-icon">🎬</div><div class="empty-title">Sin resultados</div><div class="empty-sub">Prueba con otros filtros o agrega nuevos títulos</div></div></div>`;
-    } else {
-      content.innerHTML = `<div class="grid">${filtered.map(buildCard).join("")}</div>`;
-    }
-  } else {
-    filtersBar.style.display = "none";
-    const byGenre = {};
-    items.forEach(i => {
-      if (!byGenre[i.genre]) byGenre[i.genre] = [];
-      byGenre[i.genre].push(i);
-    });
-    const genresPresent = GENRES.filter(g => byGenre[g]);
-    if (!genresPresent.length) {
-      content.innerHTML = `<div style="text-align:center;padding:60px 20px;color:#4a4a6a"><div style="font-size:48px;margin-bottom:12px">🎬</div><div>Agrega títulos para verlos por género</div></div>`;
-    } else {
-      content.innerHTML = genresPresent.map(g => `
-        <div class="genre-section">
-          <div class="genre-heading">${g} <span class="genre-count">${byGenre[g].length} título${byGenre[g].length>1?"s":""}</span></div>
-          <div class="grid" style="padding:0">${byGenre[g].map(buildCard).join("")}</div>
-        </div>
-      `).join("");
-    }
-  }
-}
-
-function renderStats() {
-  const vistas = items.filter(i => i.status === "Vista").length;
-  const pendientes = items.filter(i => i.status === "Pendiente").length;
-  const rated = items.filter(i => i.rating > 0);
-  const avg = rated.length ? (rated.reduce((a,b) => a + b.rating, 0) / rated.length).toFixed(1) : "—";
-  document.getElementById("stats").innerHTML = [
-    {l:"Total",v:items.length},{l:"Vistas ✓",v:vistas},{l:"Pendientes",v:pendientes},{l:"Rating prom.",v:avg+"★"}
+function renderStats(){
+  const vistas=items.filter(i=>i.status==="Vista").length;
+  const pend=items.filter(i=>i.status==="Pendiente").length;
+  const rated=items.filter(i=>i.rating>0);
+  const avg=rated.length?(rated.reduce((a,b)=>a+b.rating,0)/rated.length).toFixed(1):"—";
+  document.getElementById("stats").innerHTML=[
+    {l:"Total",v:items.length},{l:"Vistas ✓",v:vistas},{l:"Pendientes",v:pend},{l:"Rating prom.",v:avg+"★"}
   ].map(s=>`<div class="stat-card"><div class="stat-val">${s.v}</div><div class="stat-lbl">${s.l}</div></div>`).join("");
 }
 
-function switchTab(tab) {
-  activeTab = tab;
-  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+function switchTab(tab){
+  activeTab=tab;
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
   document.getElementById("tab-"+tab).classList.add("active");
   render();
 }
 
-function populateGenreFilter() {
-  const sel = document.getElementById("filterGenre");
-  GENRES.forEach(g => {
-    const o = document.createElement("option");
-    o.value = g; o.textContent = g;
-    sel.appendChild(o);
-  });
-}
-
-// Init
-load();
-populateGenreFilter();
-renderStats();
-render();
+load(); renderStats(); render();
 </script>
 </body>
 </html>
