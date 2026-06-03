@@ -30,63 +30,70 @@ input,select,textarea{font-family:inherit}
 .legend-item{display:flex;align-items:center;gap:3px;font-size:11px;color:#64748b;white-space:nowrap}
 .legend-dot{color:#2d2d4e;font-size:11px}
 
-.tabs{display:flex;gap:4px;padding:0 20px;border-bottom:1px solid #1e1e3a}
-.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:#64748b;padding:10px 18px;font-size:13px;font-weight:500;transition:all 0.15s;margin-bottom:-1px}
+.tabs{display:flex;gap:0;padding:0 20px;border-bottom:1px solid #1e1e3a;overflow-x:auto}
+.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:#64748b;padding:10px 16px;font-size:13px;font-weight:500;transition:all 0.15s;margin-bottom:-1px;white-space:nowrap}
 .tab.active{color:#a5b4fc;border-bottom-color:#4f46e5}
 .tab:hover:not(.active){color:#94a3b8}
 
 .toast{position:fixed;bottom:24px;right:20px;background:#1e1b4b;border:1px solid #4f46e5;border-radius:10px;padding:12px 18px;font-size:13px;color:#a5b4fc;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none}
 .toast.show{opacity:1}
 
-/* Layout de 2 columnas — sidebar fija izquierda, contenido derecha */
-.two-col{display:flex;gap:16px;padding:20px;align-items:flex-start}
-.sidebar{width:220px;flex-shrink:0;background:#12122a;border:1px solid #1e1e3a;border-radius:14px;padding:14px;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow-y:auto}
-.sidebar-title{font-size:11px;font-weight:600;color:#a5b4fc;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.top-item{display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid #1e1e3a}
-.top-item:last-child{border-bottom:none;padding-bottom:0}
-.top-rank{font-size:11px;font-weight:700;color:#4a4a6a;min-width:18px;margin-top:1px;flex-shrink:0}
-.top-rank.gold{color:#f5c518}
-.top-rank.silver{color:#94a3b8}
-.top-rank.bronze{color:#cd7c3a}
-.top-info{flex:1;min-width:0}
-.top-title{font-size:12px;font-weight:600;color:#e2e8f0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.top-sub{font-size:10px;color:#4a4a6a;margin-top:1px}
-.top-stars{font-size:11px;color:#f5c518;margin-top:2px;letter-spacing:0}
-.top-syn{font-size:10px;color:#64748b;line-height:1.5;margin-top:3px}
-
-/* Contenido principal (género / recs) */
-.main-col{flex:1;min-width:0}
-.genre-section{margin-bottom:24px}
-.genre-heading{font-size:15px;font-weight:600;color:#a5b4fc;padding:0 0 10px;border-bottom:1px solid #1e1e3a;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.genre-emoji{font-size:17px}
-.genre-count{font-size:11px;color:#4a4a6a;font-weight:400;margin-left:auto}
-.dash-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-
-.dash-card{background:#12122a;border:1px solid #1e1e3a;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
-.dash-title{font-weight:600;font-size:13px;color:#e2e8f0;line-height:1.3}
-.dash-year{font-size:11px;color:#4a4a6a;font-weight:400}
-.dash-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+/* Badges */
 .badge{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500}
 .badge-vista{background:#1a3a1a;color:#4ade80;border:1px solid #166534}
 .badge-pendiente{background:#2a2a1a;color:#facc15;border:1px solid #854d0e}
 .badge-type{background:#1e2a3a;color:#7dd3fc;border:1px solid #1e40af}
+
+/* ── TOP TAB ── */
+.top-page{padding:20px}
+.top-header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.top-page-title{font-size:18px;font-weight:700;color:#a5b4fc;display:flex;align-items:center;gap:8px}
+.top-filter-row{display:flex;gap:8px;flex-wrap:wrap}
+.top-filter-row select{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:6px 10px;color:#e2e8f0;font-size:12px;cursor:pointer}
+.top-list{display:flex;flex-direction:column;gap:10px}
+.top-card{background:#12122a;border:1px solid #1e1e3a;border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;transition:border-color 0.2s}
+.top-card:hover{border-color:#4f46e5}
+.top-card-rank{font-size:24px;font-weight:800;min-width:36px;text-align:center;margin-top:2px}
+.rank-gold{color:#f5c518}
+.rank-silver{color:#94a3b8}
+.rank-bronze{color:#cd7c3a}
+.rank-normal{color:#2d2d4e}
+.top-card-body{flex:1;min-width:0}
+.top-card-title{font-weight:600;font-size:15px;color:#e2e8f0}
+.top-card-meta{font-size:11px;color:#4a4a6a;margin-top:2px}
+.top-card-stars{margin-top:5px}
+.top-card-synopsis{font-size:12px;color:#94a3b8;line-height:1.6;margin-top:6px;border-left:2px solid #2d2d4e;padding-left:8px}
+
+/* ── POR GÉNERO ── */
+.genre-page{padding:20px}
+.genre-section{margin-bottom:28px}
+.genre-heading{font-size:15px;font-weight:600;color:#a5b4fc;padding:0 0 10px;border-bottom:1px solid #1e1e3a;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.genre-emoji{font-size:17px}
+.genre-count{font-size:11px;color:#4a4a6a;font-weight:400;margin-left:auto}
+.dash-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.dash-card{background:#12122a;border:1px solid #1e1e3a;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.dash-title{font-weight:600;font-size:13px;color:#e2e8f0;line-height:1.3}
+.dash-year{font-size:11px;color:#4a4a6a;font-weight:400}
+.dash-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
 .dash-synopsis{font-size:11px;color:#94a3b8;line-height:1.6;border-left:2px solid #2d2d4e;padding-left:8px}
 
-/* Recomendaciones */
-.rec-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+/* ── RECOMENDACIONES ── */
+.recs-page{padding:20px}
+.recs-intro{font-size:12px;color:#64748b;margin-bottom:20px}
+.rec-genre-section{margin-bottom:24px}
+.rec-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
 .rec-card{background:#12122a;border:1px solid #1e1e3a;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:7px}
 .rec-title{font-weight:600;font-size:13px;color:#e2e8f0}
 .rec-meta{font-size:10px;color:#4a4a6a}
 .rec-synopsis{font-size:11px;color:#94a3b8;line-height:1.6}
 .rec-reason{font-size:10px;color:#4ade80;border-left:2px solid #166534;padding-left:8px;line-height:1.5}
 
-/* Mi lista */
+/* ── MI LISTA ── */
 .filters{display:flex;gap:8px;padding:16px 20px;flex-wrap:wrap}
 .filters input,.filters select{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:8px 12px;color:#e2e8f0;font-size:13px}
 .filters input{flex:1 1 150px}
 .filters input:focus,.filters select:focus{outline:1px solid #4f46e5}
 .list-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));padding:0 20px}
-
 .card{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s}
 .card:hover{border-color:#4f46e5}
 .card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
@@ -95,8 +102,8 @@ input,select,textarea{font-family:inherit}
 .card-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .stars{display:flex;gap:1px}
 .star{font-size:17px;color:#333;cursor:pointer;transition:color 0.1s;background:none;border:none;padding:0;line-height:1}
-.star.lit{color:#f5c518}
-.star.sixth{font-size:17px}
+.star.lit-normal{color:#f5c518}
+.star.lit-sixth{color:#c084fc}
 .card-actions{display:flex;gap:7px}
 .btn-sm{font-size:11px;padding:3px 10px;border-radius:6px;background:transparent}
 .btn-sm-purple{border:1px solid #4f46e5;color:#a5b4fc}
@@ -119,12 +126,9 @@ input,select,textarea{font-family:inherit}
 .modal input:focus,.modal select:focus,.modal textarea:focus{outline:1px solid #4f46e5}
 .modal textarea{resize:vertical}
 
-/* Responsive: en pantallas pequeñas sidebar va arriba */
-@media(max-width:680px){
-  .two-col{flex-direction:column}
-  .sidebar{width:100%;position:static;max-height:none}
-  .dash-grid,.rec-grid{grid-template-columns:1fr}
-  .list-grid{grid-template-columns:1fr}
+@media(max-width:600px){
+  .dash-grid,.rec-grid,.list-grid{grid-template-columns:1fr}
+  .tab{padding:10px 12px;font-size:12px}
 }
 </style>
 </head>
@@ -156,12 +160,13 @@ input,select,textarea{font-family:inherit}
     <span class="legend-dot">·</span>
     <span class="legend-item">⭐⭐⭐⭐⭐ Muy recomendado</span>
     <span class="legend-dot">·</span>
-    <span class="legend-item">⭐⭐⭐⭐⭐⭐ Tienes que verlo</span>
+    <span class="legend-item" style="color:#c084fc">★★★★★★ Tienes que verlo</span>
   </div>
 </div>
 
 <div class="tabs">
-  <button class="tab active" id="tab-generos" onclick="switchTab('generos')">Por género</button>
+  <button class="tab active" id="tab-top" onclick="switchTab('top')">🏆 Top</button>
+  <button class="tab" id="tab-generos" onclick="switchTab('generos')">Por género</button>
   <button class="tab" id="tab-recs" onclick="switchTab('recs')">Recomendaciones</button>
   <button class="tab" id="tab-lista" onclick="switchTab('lista')">Mi lista</button>
 </div>
@@ -195,26 +200,30 @@ input,select,textarea{font-family:inherit}
 <script>
 const GENRES = ["Acción","Comedia","Drama","Terror","Ciencia ficción","Thriller","Animación","Documental","Romance","Fantasía","Crimen"];
 const GENRE_EMOJI = {Acción:"⚡",Comedia:"😂",Drama:"🎭",Terror:"👻","Ciencia ficción":"🚀",Thriller:"🔪",Animación:"✨",Documental:"📽️",Romance:"❤️",Fantasía:"🧙",Crimen:"🕵️"};
-const STORAGE_KEY = "cinelog_v4";
+const STORAGE_KEY = "cinelog_v5";
 const MAX_STARS = 6;
 
-const INITIAL = [{"id":1,"title":"Paradise","year":2023,"type":"Serie","genre":"Ciencia ficción","status":"Vista","rating":5,"synopsis":"En una tranquila comunidad conviven algunas de las personas más prominentes del mundo. La calma estalla cuando se comete un asesinato y da comienzo una delicada investigación."},{"id":2,"title":"Palm Springs","year":2020,"type":"Película","genre":"Comedia","status":"Pendiente","rating":0,"synopsis":"Dos desconocidos quedan atrapados en un bucle temporal durante una boda en Palm Springs. Comedia romántica con toque de ciencia ficción y mucho humor negro."},{"id":3,"title":"Marty Supreme","year":2024,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"Un excéntrico campeón de ping pong busca redención y gloria en los circuitos alternativos de Nueva York. Drama indie con actuaciones memorables."},{"id":4,"title":"The Madison","year":2026,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"Se explora el duelo y la conexión humana desde una familia de Nueva York, situada en el río Madison, en Montana."},{"id":5,"title":"The Pitt","year":2025,"type":"Serie","genre":"Drama","status":"Vista","rating":4,"synopsis":"Drama médico ambientado en urgencias de un hospital público de Pittsburgh. Muestra la crudeza del sistema de salud americano en tiempo real."},{"id":6,"title":"Knives Out (trilogía)","year":2019,"type":"Película","genre":"Thriller","status":"Vista","rating":3,"synopsis":"Cuando el patriarca de una excéntrica familia adinerada aparece muerto, el detective Benoit Blanc investiga un caso lleno de giros inesperados. Whodunit moderno y brillante."},{"id":7,"title":"Weapons","year":2025,"type":"Película","genre":"Thriller","status":"Vista","rating":3,"synopsis":"Todos los niños de la clase, excepto uno, desaparecen misteriosamente en la misma noche y exactamente a la misma hora. La comunidad se pregunta quién o qué está detrás de la desaparición."},{"id":8,"title":"Sinners","year":2025,"type":"Película","genre":"Terror","status":"Vista","rating":5,"synopsis":"Dos gemelos regresan a su pueblo natal en el sur de Mississippi en los años 30, pero descubren que algo sobrenatural y oscuro acecha la región."},{"id":9,"title":"La Oficina","year":2026,"type":"Serie","genre":"Comedia","status":"Vista","rating":5,"synopsis":"Mockumentary sobre la vida cotidiana de empleados bajo el mando de un jefe incompetente pero carismático. Versión española del clásico de Ricky Gervais."},{"id":10,"title":"F1","year":2025,"type":"Película","genre":"Acción","status":"Vista","rating":4,"synopsis":"Un piloto retirado regresa a la Fórmula 1 junto a un joven talento. Producida con acceso real a las carreras del campeonato mundial, protagonizada por Brad Pitt."},{"id":11,"title":"Top Gun: Maverick","year":2022,"type":"Película","genre":"Acción","status":"Vista","rating":4,"synopsis":"El legendario piloto Maverick regresa para entrenar a una nueva generación de aviadores. Secuela espectacular llena de adrenalina y emoción."},{"id":12,"title":"The White Lotus","year":2021,"type":"Serie","genre":"Drama","status":"Vista","rating":4,"synopsis":"Antología de humor oscuro que sigue a huéspedes y empleados de un resort de lujo. Expone la hipocresía y privilegios de la clase alta americana."},{"id":13,"title":"Fargo","year":2014,"type":"Serie","genre":"Crimen","status":"Vista","rating":4,"synopsis":"Antología criminal inspirada en la película de los Coen. Cada temporada presenta un nuevo caso en el gélido Medio Oeste americano con personajes excéntricos."},{"id":14,"title":"The Killer","year":2023,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Un asesino a sueldo meticuloso comete un error y debe enfrentar las consecuencias. David Fincher dirige este thriller frío y estilizado con Michael Fassbender."},{"id":15,"title":"Seven","year":1995,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Dos detectives persiguen a un asesino en serie que basa sus crímenes en los siete pecados capitales. Obra maestra del thriller oscuro dirigida por David Fincher."},{"id":16,"title":"La Lista de Schindler","year":1993,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"La historia real de Oskar Schindler, empresario alemán que salvó la vida de más de mil judíos durante el Holocausto. Drama histórico esencial de Steven Spielberg."},{"id":200,"title":"Succession","year":2018,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"La familia Roy, propietaria de un imperio mediático, entra en guerra cuando el patriarca anuncia su retiro. Poder, traición y humor negro en su máxima expresión."},{"id":201,"title":"Severance","year":2022,"type":"Serie","genre":"Ciencia ficción","status":"Pendiente","rating":0,"synopsis":"Los empleados de Lumon Industries se someten a un procedimiento que separa quirúrgicamente sus memorias laborales de las personales."},{"id":202,"title":"True Detective T1","year":2014,"type":"Serie","genre":"Crimen","status":"Pendiente","rating":0,"synopsis":"Dos detectives de personalidades opuestas investigan durante 17 años una serie de crímenes rituales en el sur de Louisiana. Atmósfera oscura e hipnótica."}];
+const INITIAL = [{"id":1,"title":"Paradise","year":2023,"type":"Serie","genre":"Ciencia ficción","status":"Vista","rating":6,"synopsis":"En una tranquila comunidad conviven algunas de las personas más prominentes del mundo. La calma estalla cuando se comete un asesinato y da comienzo una delicada investigación."},{"id":2,"title":"Palm Springs","year":2020,"type":"Película","genre":"Comedia","status":"Pendiente","rating":0,"synopsis":"Dos desconocidos quedan atrapados en un bucle temporal durante una boda en Palm Springs. Comedia romántica con toque de ciencia ficción y mucho humor negro."},{"id":3,"title":"Marty Supreme","year":2024,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"Un excéntrico campeón de ping pong busca redención y gloria en los circuitos alternativos de Nueva York. Drama indie con actuaciones memorables."},{"id":4,"title":"The Madison","year":2026,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"Se explora el duelo y la conexión humana desde una familia de Nueva York, situada en el río Madison, en Montana."},{"id":5,"title":"The Pitt","year":2025,"type":"Serie","genre":"Drama","status":"Vista","rating":4,"synopsis":"Drama médico ambientado en urgencias de un hospital público de Pittsburgh. Muestra la crudeza del sistema de salud americano en tiempo real."},{"id":6,"title":"Knives Out (trilogía)","year":2019,"type":"Película","genre":"Thriller","status":"Vista","rating":4,"synopsis":"Cuando el patriarca de una excéntrica familia adinerada aparece muerto, el detective Benoit Blanc investiga un caso lleno de giros inesperados. Whodunit moderno y brillante."},{"id":7,"title":"Weapons","year":2025,"type":"Película","genre":"Thriller","status":"Vista","rating":4,"synopsis":"Todos los niños de la clase, excepto uno, desaparecen misteriosamente en la misma noche y exactamente a la misma hora. La comunidad se pregunta quién o qué está detrás de la desaparición."},{"id":8,"title":"Sinners","year":2025,"type":"Película","genre":"Terror","status":"Vista","rating":6,"synopsis":"Dos gemelos regresan a su pueblo natal en el sur de Mississippi en los años 30, pero descubren que algo sobrenatural y oscuro acecha la región."},{"id":9,"title":"La Oficina","year":2026,"type":"Serie","genre":"Comedia","status":"Vista","rating":5,"synopsis":"Mockumentary sobre la vida cotidiana de empleados bajo el mando de un jefe incompetente pero carismático. Versión española del clásico de Ricky Gervais."},{"id":10,"title":"F1","year":2025,"type":"Película","genre":"Acción","status":"Vista","rating":5,"synopsis":"Un piloto retirado regresa a la Fórmula 1 junto a un joven talento. Producida con acceso real a las carreras del campeonato mundial, protagonizada por Brad Pitt."},{"id":11,"title":"Top Gun: Maverick","year":2022,"type":"Película","genre":"Acción","status":"Vista","rating":5,"synopsis":"El legendario piloto Maverick regresa para entrenar a una nueva generación de aviadores. Secuela espectacular llena de adrenalina y emoción."},{"id":12,"title":"The White Lotus","year":2021,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"Antología de humor oscuro que sigue a huéspedes y empleados de un resort de lujo. Expone la hipocresía y privilegios de la clase alta americana."},{"id":13,"title":"Fargo","year":2014,"type":"Serie","genre":"Crimen","status":"Vista","rating":4,"synopsis":"Antología criminal inspirada en la película de los Coen. Cada temporada presenta un nuevo caso en el gélido Medio Oeste americano con personajes excéntricos."},{"id":14,"title":"The Killer","year":2023,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Un asesino a sueldo meticuloso comete un error y debe enfrentar las consecuencias. David Fincher dirige este thriller frío y estilizado con Michael Fassbender."},{"id":15,"title":"Seven","year":1995,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Dos detectives persiguen a un asesino en serie que basa sus crímenes en los siete pecados capitales. Obra maestra del thriller oscuro dirigida por David Fincher."},{"id":16,"title":"La Lista de Schindler","year":1993,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"La historia real de Oskar Schindler, empresario alemán que salvó la vida de más de mil judíos durante el Holocausto. Drama histórico esencial de Steven Spielberg."},{"id":200,"title":"Succession","year":2018,"type":"Serie","genre":"Drama","status":"Vista","rating":6,"synopsis":"La familia Roy, propietaria de un imperio mediático, entra en guerra cuando el patriarca anuncia su retiro. Poder, traición y humor negro en su máxima expresión."},{"id":201,"title":"Severance","year":2022,"type":"Serie","genre":"Ciencia ficción","status":"Pendiente","rating":0,"synopsis":"Los empleados de Lumon Industries se someten a un procedimiento que separa quirúrgicamente sus memorias laborales de las personales."},{"id":202,"title":"True Detective T1","year":2014,"type":"Serie","genre":"Crimen","status":"Pendiente","rating":0,"synopsis":"Dos detectives de personalidades opuestas investigan durante 17 años una serie de crímenes rituales en el sur de Louisiana. Atmósfera oscura e hipnótica."},{"id":203,"title":"Una batalla tras otra","year":2026,"type":"Película","genre":"Acción","status":"Vista","synopsis":"Bob, un revolucionario fracasado, adicto y paranoico, sobrevive desconectado de la realidad con su hija, Willa. Un día, Willa desaparece y el ex-radical hará todo por encontrarla mientras lidia con las consecuencias de su pasado.","rating":5}];
 
+// Recomendaciones actualizadas — sin Severance ni True Detective (ya en lista)
 const RECS = [
-  {title:"Severance",year:2022,type:"Serie",genre:"Ciencia ficción",synopsis:"Los empleados de Lumon Industries se someten a un procedimiento que separa quirúrgicamente sus memorias laborales de las personales.",reason:"Te encantó Paradise — Severance tiene la misma tensión de misterio y thriller psicológico en una comunidad aparentemente perfecta."},
-  {title:"The Bear",year:2022,type:"Serie",genre:"Drama",synopsis:"Un chef de alta cocina regresa a Chicago para hacerse cargo del restaurante familiar. Ritmo frenético y actuaciones de primer nivel.",reason:"Calificaste The Pitt con 4★ — The Bear tiene esa misma energía de presión extrema en tiempo real dentro de un ambiente profesional."},
-  {title:"Get Out",year:2017,type:"Película",genre:"Terror",synopsis:"Un joven afroamericano visita a la familia de su novia y descubre que algo perturbador se esconde detrás de su aparente cordialidad.",reason:"Le diste 5★ a Sinners — Get Out tiene esa misma mezcla de terror sobrenatural con crítica social profunda y un giro devastador."},
-  {title:"Prisoners",year:2013,type:"Película",genre:"Thriller",synopsis:"Cuando dos niñas desaparecen, el desesperado padre toma la justicia por su mano mientras el detective sigue sus propias pistas.",reason:"Calificaste Weapons y Knives Out — Prisoners lleva el thriller de investigación al límite moral, dirigido por Denis Villeneuve."},
-  {title:"True Detective T1",year:2014,type:"Serie",genre:"Crimen",synopsis:"Dos detectives de personalidades opuestas investigan durante 17 años crímenes rituales en Louisiana. Atmósfera oscura e hipnótica.",reason:"Tu 4★ a Fargo indica que aprecias el crimen con profundidad narrativa — True Detective T1 es la cima del género en televisión."},
-  {title:"Barry",year:2018,type:"Serie",genre:"Comedia",synopsis:"Un sicario de mediano nivel descubre su pasión por la actuación mientras intenta abandonar su vida criminal en Los Ángeles.",reason:"La Oficina 5★ muestra que disfrutas la comedia oscura con personajes complejos — Barry lleva ese humor al límite."},
+  {title:"The Bear",year:2022,type:"Serie",genre:"Drama",synopsis:"Un chef de alta cocina regresa a Chicago para hacerse cargo del restaurante familiar tras la muerte de su hermano. Ritmo frenético y actuaciones de primer nivel.",reason:"Tus 4★ en The Pitt muestran que te atrapa la presión en tiempo real — The Bear tiene esa misma energía intensa pero en una cocina de Chicago."},
+  {title:"Succession",year:2018,type:"Serie",genre:"Drama",synopsis:"La familia Roy, propietaria de un imperio mediático, entra en guerra cuando el patriarca anuncia su retiro. Poder, traición y humor negro en su máxima expresión.",reason:"Ya en tu lista con 6★ — si buscas algo similar, este es el estándar de oro del drama de poder."},
+  {title:"Get Out",year:2017,type:"Película",genre:"Terror",synopsis:"Un joven afroamericano visita a la familia de su novia y descubre que algo perturbador se esconde detrás de su aparente cordialidad.",reason:"Le diste 6★ a Sinners — Get Out tiene esa misma mezcla de terror sobrenatural con crítica social devastadora y un giro impecable."},
+  {title:"Hereditary",year:2018,type:"Película",genre:"Terror",synopsis:"Tras la muerte de su misteriosa abuela, una familia comienza a descubrir secretos inquietantes sobre su linaje. Terror psicológico de altísimo nivel.",reason:"Sinners 6★ confirma que valoras el terror con peso narrativo — Hereditary es probablemente la película de terror más perturbadora de la última década."},
+  {title:"Prisoners",year:2013,type:"Película",genre:"Thriller",synopsis:"Cuando dos niñas desaparecen, el desesperado padre toma la justicia por su mano mientras el detective sigue sus propias pistas. Denis Villeneuve en su mejor forma.",reason:"Tus 4★ en Knives Out y Weapons muestran que aprecias el thriller de investigación — Prisoners lleva el género al límite moral y emocional."},
+  {title:"True Detective T1",year:2014,type:"Serie",genre:"Crimen",synopsis:"Dos detectives de personalidades opuestas investigan durante 17 años crímenes rituales en Louisiana. Atmósfera oscura e hipnótica.",reason:"Ya en tu pendientes — con tu 4★ en Fargo este es el siguiente paso obligado en el crimen noir."},
+  {title:"Top Boy",year:2019,type:"Serie",genre:"Crimen",synopsis:"Drama sobre el tráfico de drogas en los proyectos de vivienda de Londres. Una de las series más crudas y auténticas sobre crimen organizado en televisión.",reason:"Tu 4★ en Fargo y Knives Out muestran que disfrutas el crimen con profundidad humana — Top Boy lleva eso a un nivel muy realista."},
+  {title:"Mission: Impossible – Dead Reckoning",year:2023,type:"Película",genre:"Acción",synopsis:"Ethan Hunt enfrenta su misión más personal y peligrosa jamás: encontrar una misteriosa arma antes de que caiga en las manos equivocadas.",reason:"F1 y Top Gun con 5★ muestran que disfrutas la acción de gran espectáculo bien ejecutada — Dead Reckoning es la cima del género en cine de acción."},
 ];
 
-let items=[], editingId=null, nextId=203, activeTab="generos";
+let items=[], editingId=null, nextId=204, activeTab="top";
+let topFilterGenre="", topFilterType="";
 
 function load(){
   try{
     const s=localStorage.getItem(STORAGE_KEY);
-    if(s){const p=JSON.parse(s);items=p.items||INITIAL;nextId=p.nextId||203;}
+    if(s){const p=JSON.parse(s);items=p.items||INITIAL;nextId=p.nextId||204;}
     else{items=JSON.parse(JSON.stringify(INITIAL));}
   }catch{items=JSON.parse(JSON.stringify(INITIAL));}
 }
@@ -228,14 +237,13 @@ function exportData(){
 function importData(e){
   const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
-  r.onload=ev=>{try{const p=JSON.parse(ev.target.result);if(p.items){items=p.items;nextId=p.nextId||203;save();renderStats();render();showToast("Lista importada ✓");}}catch{showToast("Archivo inválido");}};
+  r.onload=ev=>{try{const p=JSON.parse(ev.target.result);if(p.items){items=p.items;nextId=p.nextId||204;save();renderStats();render();showToast("Lista importada ✓");}}catch{showToast("Archivo inválido");}};
   r.readAsText(f);e.target.value="";
 }
 function showToast(msg){
   const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"),2500);
 }
-
 function openAddModal(){
   editingId=null;
   document.getElementById("modal-title").textContent="Agregar título";
@@ -290,8 +298,13 @@ function addFromRec(idx){
   items.push({id:nextId++,title:r.title,year:r.year,type:r.type,genre:r.genre,status:"Pendiente",rating:0,synopsis:r.synopsis});
   save();renderStats();showToast(`"${r.title}" añadida ✓`);
 }
+function applyTopFilter(){
+  topFilterGenre=document.getElementById("top-fg")?.value||"";
+  topFilterType=document.getElementById("top-ft")?.value||"";
+  render();
+}
 
-function starsDisplay(rating, size=12){
+function starsHTML(rating, size=12){
   let h="";
   for(let s=1;s<=MAX_STARS;s++){
     const lit=rating>=s;
@@ -301,31 +314,54 @@ function starsDisplay(rating, size=12){
   return h;
 }
 
-/* SIDEBAR TOP — todos los títulos calificados */
-function buildSidebar(){
-  const ranked=[...items].filter(i=>i.rating>0).sort((a,b)=>b.rating-a.rating||a.title.localeCompare(b.title));
-  const rankClass=i=>i===0?"gold":i===1?"silver":i===2?"bronze":"";
-  const rows=ranked.length
-    ? ranked.map((item,i)=>`
-      <div class="top-item">
-        <span class="top-rank ${rankClass(i)}">${i+1}</span>
-        <div class="top-info">
-          <div class="top-title" title="${item.title}">${item.title}</div>
-          <div class="top-sub">${item.genre} · ${item.type}</div>
-          <div class="top-stars">${starsDisplay(item.rating,11)}</div>
-          ${item.synopsis?`<div class="top-syn">${item.synopsis.split(".")[0]}.</div>`:""}
-        </div>
-      </div>`).join("")
-    : `<p style="font-size:11px;color:#4a4a6a">Califica títulos para ver el ranking</p>`;
-  return `<div class="sidebar"><div class="sidebar-title">🏆 Top calificados</div>${rows}</div>`;
+/* ── TOP ── */
+function renderTop(){
+  let ranked=[...items].filter(i=>i.rating>0);
+  if(topFilterGenre) ranked=ranked.filter(i=>i.genre===topFilterGenre);
+  if(topFilterType)  ranked=ranked.filter(i=>i.type===topFilterType);
+  ranked.sort((a,b)=>b.rating-a.rating||a.title.localeCompare(b.title));
+
+  const rankClass=(i)=>i===0?"rank-gold":i===1?"rank-silver":i===2?"rank-bronze":"rank-normal";
+  const rankLabel=(i)=>i===0?"🥇":i===1?"🥈":i===2?"🥉":`${i+1}`;
+
+  const genreOpts=GENRES.map(g=>`<option value="${g}" ${topFilterGenre===g?"selected":""}>${g}</option>`).join("");
+  const cards=ranked.length ? ranked.map((item,i)=>`
+    <div class="top-card">
+      <div class="top-card-rank ${rankClass(i)}">${rankLabel(i)}</div>
+      <div class="top-card-body">
+        <div class="top-card-title">${item.title} ${item.year?`<span style="font-size:12px;color:#4a4a6a">(${item.year})</span>`:""}</div>
+        <div class="top-card-meta">${item.genre} · ${item.type}</div>
+        <div class="top-card-stars">${starsHTML(item.rating,14)}</div>
+        ${item.synopsis?`<div class="top-card-synopsis">${item.synopsis}</div>`:""}
+      </div>
+    </div>`).join("")
+    : `<div class="empty"><div class="empty-icon">🏆</div><p>No hay títulos calificados con esos filtros</p></div>`;
+
+  return `<div class="top-page">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+      <span style="font-size:17px;font-weight:700;color:#a5b4fc">🏆 Top calificados</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <select id="top-fg" onchange="applyTopFilter()" style="background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:6px 10px;color:#e2e8f0;font-size:12px;cursor:pointer">
+          <option value="" ${!topFilterGenre?"selected":""}>Género: Todos</option>${genreOpts}
+        </select>
+        <select id="top-ft" onchange="applyTopFilter()" style="background:#1a1a2e;border:1px solid #2d2d4e;border-radius:8px;padding:6px 10px;color:#e2e8f0;font-size:12px;cursor:pointer">
+          <option value="" ${!topFilterType?"selected":""}>Tipo: Todos</option>
+          <option value="Película" ${topFilterType==="Película"?"selected":""}>Película</option>
+          <option value="Serie" ${topFilterType==="Serie"?"selected":""}>Serie</option>
+        </select>
+      </div>
+    </div>
+    <div class="top-list">${cards}</div>
+  </div>`;
 }
 
-/* RENDER GENEROS */
+/* ── POR GÉNERO ── */
 function renderGeneros(){
   const byGenre={};
   items.forEach(i=>{if(!byGenre[i.genre])byGenre[i.genre]=[];byGenre[i.genre].push(i);});
   const present=GENRES.filter(g=>byGenre[g]);
-  const main=present.length ? present.map(g=>{
+  if(!present.length) return `<div class="genre-page"><div class="empty"><div class="empty-icon">🎬</div><p>Agrega títulos para verlos por género</p></div></div>`;
+  return `<div class="genre-page">${present.map(g=>{
     const cards=byGenre[g].map(item=>`
       <div class="dash-card">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
@@ -336,7 +372,7 @@ function renderGeneros(){
               <span class="badge badge-type">${item.type}</span>
             </div>
           </div>
-          <div style="flex-shrink:0">${item.rating?starsDisplay(item.rating):`<span style="font-size:10px;color:#4a4a6a">Sin calificar</span>`}</div>
+          <div style="flex-shrink:0;margin-top:2px">${item.rating?starsHTML(item.rating):`<span style="font-size:10px;color:#4a4a6a">Sin calificar</span>`}</div>
         </div>
         ${item.synopsis?`<p class="dash-synopsis">${item.synopsis}</p>`:""}
       </div>`).join("");
@@ -344,35 +380,32 @@ function renderGeneros(){
       <div class="genre-heading"><span class="genre-emoji">${GENRE_EMOJI[g]||"🎬"}</span>${g}<span class="genre-count">${byGenre[g].length} título${byGenre[g].length>1?"s":""}</span></div>
       <div class="dash-grid">${cards}</div>
     </div>`;
-  }).join("") : `<div class="empty"><div class="empty-icon">🎬</div><p>Agrega títulos para verlos por género</p></div>`;
-
-  return `<div class="two-col">${buildSidebar()}<div class="main-col">${main}</div></div>`;
+  }).join("")}</div>`;
 }
 
-/* RENDER RECOMENDACIONES */
+/* ── RECOMENDACIONES ── */
 function renderRecs(){
   const byGenre={};
   RECS.forEach((r,i)=>{if(!byGenre[r.genre])byGenre[r.genre]=[];byGenre[r.genre].push({...r,idx:i});});
-  const sections=Object.keys(byGenre).map(g=>{
-    const cards=byGenre[g].map(r=>`
-      <div class="rec-card">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-          <div><div class="rec-title">${r.title}</div><div class="rec-meta">${r.year} · ${r.type}</div></div>
-          <span class="badge badge-type">${r.type}</span>
-        </div>
-        <p class="rec-synopsis">${r.synopsis}</p>
-        <div class="rec-reason">💡 ${r.reason}</div>
-        <button onclick="addFromRec(${r.idx})" style="margin-top:4px;background:transparent;border:1px solid #4f46e5;border-radius:7px;color:#a5b4fc;padding:5px 12px;font-size:11px;cursor:pointer;width:100%">+ Añadir a mi lista</button>
-      </div>`).join("");
-    return `<div class="genre-section">
+  const sections=Object.keys(byGenre).map(g=>`
+    <div class="rec-genre-section">
       <div class="genre-heading"><span class="genre-emoji">${GENRE_EMOJI[g]||"🎬"}</span>${g}</div>
-      <div class="rec-grid">${cards}</div>
-    </div>`;
-  }).join("");
-  return `<div class="two-col">${buildSidebar()}<div class="main-col">${sections}</div></div>`;
+      <div class="rec-grid">${byGenre[g].map(r=>`
+        <div class="rec-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+            <div><div class="rec-title">${r.title}</div><div class="rec-meta">${r.year} · ${r.type}</div></div>
+            <span class="badge badge-type">${r.type}</span>
+          </div>
+          <p class="rec-synopsis">${r.synopsis}</p>
+          <div class="rec-reason">💡 ${r.reason}</div>
+          <button onclick="addFromRec(${r.idx})" style="margin-top:6px;background:transparent;border:1px solid #4f46e5;border-radius:7px;color:#a5b4fc;padding:5px 12px;font-size:11px;cursor:pointer;width:100%">+ Añadir a mi lista</button>
+        </div>`).join("")}
+      </div>
+    </div>`).join("");
+  return `<div class="recs-page"><p class="recs-intro">Picks personalizados basados en tus calificaciones — actualizados con tu lista actual.</p>${sections}</div>`;
 }
 
-/* RENDER MI LISTA */
+/* ── MI LISTA ── */
 function renderLista(){
   const q=document.getElementById("searchInput")?.value?.toLowerCase()||"";
   const st=document.getElementById("filterStatus")?.value||"";
@@ -382,11 +415,9 @@ function renderLista(){
   const genreOpts=GENRES.map(g=>`<option value="${g}">${g}</option>`).join("");
   const cards=filtered.length?filtered.map(item=>{
     const stars=Array.from({length:MAX_STARS},(_,s)=>{
-      const n=s+1;
-      const lit=item.rating>=n;
-      const isSixth=n===MAX_STARS;
-      const litColor=isSixth?"#c084fc":"#f5c518";
-      return `<button class="star${isSixth?" sixth":""}" style="color:${lit?litColor:"#333"}" onclick="setRating(${item.id},${n})" title="${n} estrella${n>1?"s":""}">★</button>`;
+      const n=s+1,lit=item.rating>=n,sixth=n===MAX_STARS;
+      const cls=lit?(sixth?"lit-sixth":"lit-normal"):"";
+      return `<button class="star ${cls}" onclick="setRating(${item.id},${n})" title="${n}★">★</button>`;
     }).join("");
     return `<div class="card">
       <div class="card-header">
@@ -402,8 +433,8 @@ function renderLista(){
           </div>
         </div>
         <div style="display:flex;gap:4px;align-items:center">
-          <button class="btn-edit" onclick="openEditModal(${item.id})" title="Editar">✎</button>
-          <button class="btn-delete" onclick="deleteItem(${item.id})" title="Eliminar">✕</button>
+          <button class="btn-edit" onclick="openEditModal(${item.id})">✎</button>
+          <button class="btn-delete" onclick="deleteItem(${item.id})">✕</button>
         </div>
       </div>
       ${item.synopsis?`<p class="synopsis-block" id="syn-${item.id}" style="display:none">${item.synopsis}</p>`:""}
@@ -416,7 +447,6 @@ function renderLista(){
       </div>
     </div>`;
   }).join(""):`<div class="empty"><div class="empty-icon">🔍</div><p>Sin resultados</p></div>`;
-
   return `
     <div class="filters">
       <input type="text" id="searchInput" placeholder="🔍 Buscar..." oninput="render()" value="${q}"/>
@@ -439,8 +469,9 @@ function renderLista(){
 
 function render(){
   const c=document.getElementById("content");
-  if(activeTab==="generos")c.innerHTML=renderGeneros();
-  else if(activeTab==="recs")c.innerHTML=renderRecs();
+  if(activeTab==="top") c.innerHTML=renderTop();
+  else if(activeTab==="generos") c.innerHTML=renderGeneros();
+  else if(activeTab==="recs") c.innerHTML=renderRecs();
   else c.innerHTML=renderLista();
 }
 function renderStats(){
