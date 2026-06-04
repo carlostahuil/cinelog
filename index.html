@@ -300,6 +300,50 @@ const GE={Acción:"⚡",Comedia:"😄",Drama:"🎭",Terror:"👻","Ciencia ficci
 const SK="cinelog_v7";
 const MS=6;
 const PC={};
+const WC={};
+
+async function fetchWhere(title,year,type){
+  const k=`${title}__${year}__${type}`;
+  if(WC[k]!==undefined)return WC[k];
+  WC[k]=null;
+  try{
+    const q=encodeURIComponent(title.replace(/\(.*\)/g,"").trim());
+    const ep=type==="Serie"?"tv":"movie";
+    const yr=year?(type==="Serie"?`&first_air_date_year=${year}`:`&year=${year}`):"";
+    const sr=await fetch(`${TMDB_BASE}/search/${ep}?api_key=${TMDB_KEY}&query=${q}${yr}&language=es-MX`);
+    const sd=await sr.json();
+    const hit=(sd.results||[])[0];
+    if(!hit)return null;
+    const wr=await fetch(`${TMDB_BASE}/${ep}/${hit.id}/watch/providers?api_key=${TMDB_KEY}`);
+    const wd=await wr.json();
+    const mx=(wd.results||{}).MX||null;
+    if(!mx)return null;
+    const providers=[];
+    const seen=new Set();
+    for(const cat of["flatrate","free","ads","rent","buy"]){
+      for(const p of(mx[cat]||[])){
+        if(!seen.has(p.provider_id)){
+          seen.add(p.provider_id);
+          providers.push({name:p.provider_name,logo:`https://image.tmdb.org/t/p/original${p.logo_path}`,cat});
+        }
+      }
+    }
+    WC[k]=providers.length?providers:null;
+  }catch(e){}
+  return WC[k];
+}
+
+async function preloadWhere(list){
+  await Promise.all(list.map(i=>fetchWhere(i.title,i.year,i.type)));
+  render();
+}
+
+function whereHTML(title,year,type){
+  const k=`${title}__${year}__${type}`;
+  const providers=WC[k];
+  if(!providers)return`<span style="font-size:10px;color:var(--text3)">Sin info de plataformas</span>`;
+  return providers.slice(0,6).map(p=>`<img src="${p.logo}" title="${p.name}" style="width:22px;height:22px;border-radius:5px;object-fit:cover;border:1px solid #ffffff15" loading="lazy" onerror="this.style.display='none'"/>`).join("");
+}
 
 const DATA=[{"id":1,"title":"Paradise","year":2023,"type":"Serie","genre":"Ciencia ficción","status":"Vista","rating":6,"synopsis":"En una tranquila comunidad conviven algunas de las personas más prominentes del mundo. La calma estalla cuando se comete un asesinato y da comienzo una delicada investigación."},{"id":2,"title":"Palm Springs","year":2020,"type":"Película","genre":"Comedia","status":"Pendiente","rating":0,"synopsis":"Dos desconocidos quedan atrapados en un bucle temporal durante una boda en Palm Springs. Comedia romántica con toque de ciencia ficción y mucho humor negro."},{"id":3,"title":"Marty Supreme","year":2024,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"Un excéntrico campeón de ping pong busca redención y gloria en los circuitos alternativos de Nueva York. Drama indie con actuaciones memorables."},{"id":4,"title":"The Madison","year":2026,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"Se explora el duelo y la conexión humana desde una familia de Nueva York, situada en el río Madison, en Montana."},{"id":5,"title":"The Pitt","year":2025,"type":"Serie","genre":"Drama","status":"Vista","rating":4,"synopsis":"Drama médico ambientado en urgencias de un hospital público de Pittsburgh. Muestra la crudeza del sistema de salud americano en tiempo real."},{"id":6,"title":"Knives Out (trilogía)","year":2019,"type":"Película","genre":"Thriller","status":"Vista","rating":4,"synopsis":"Cuando el patriarca de una excéntrica familia adinerada aparece muerto, el detective Benoit Blanc investiga un caso lleno de giros inesperados. Whodunit moderno y brillante."},{"id":7,"title":"Weapons","year":2025,"type":"Película","genre":"Thriller","status":"Vista","rating":4,"synopsis":"Todos los niños de la clase, excepto uno, desaparecen misteriosamente en la misma noche. La comunidad se pregunta quién o qué está detrás de la desaparición."},{"id":8,"title":"Sinners","year":2025,"type":"Película","genre":"Terror","status":"Vista","rating":6,"synopsis":"Dos gemelos regresan a su pueblo natal en el sur de Mississippi en los años 30, pero descubren que algo sobrenatural y oscuro acecha la región."},{"id":9,"title":"La Oficina","year":2026,"type":"Serie","genre":"Comedia","status":"Vista","rating":5,"synopsis":"Mockumentary sobre la vida cotidiana de empleados bajo el mando de un jefe incompetente pero carismático. Versión española del clásico de Ricky Gervais."},{"id":10,"title":"F1","year":2025,"type":"Película","genre":"Acción","status":"Vista","rating":5,"synopsis":"Un piloto retirado regresa a la Fórmula 1 junto a un joven talento. Producida con acceso real a las carreras del campeonato mundial, protagonizada por Brad Pitt."},{"id":11,"title":"Top Gun: Maverick","year":2022,"type":"Película","genre":"Acción","status":"Vista","rating":5,"synopsis":"El legendario piloto Maverick regresa para entrenar a una nueva generación de aviadores. Secuela espectacular llena de adrenalina y emoción."},{"id":12,"title":"The White Lotus","year":2021,"type":"Serie","genre":"Drama","status":"Vista","rating":5,"synopsis":"Antología de humor oscuro que sigue a huéspedes y empleados de un resort de lujo. Expone la hipocresía y privilegios de la clase alta americana."},{"id":13,"title":"Fargo","year":2014,"type":"Serie","genre":"Crimen","status":"Vista","rating":4,"synopsis":"Antología criminal inspirada en la película de los Coen. Cada temporada presenta un nuevo caso en el gélido Medio Oeste americano con personajes excéntricos."},{"id":14,"title":"The Killer","year":2023,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Un asesino a sueldo meticuloso comete un error y debe enfrentar las consecuencias. David Fincher dirige este thriller frío y estilizado con Michael Fassbender."},{"id":15,"title":"Seven","year":1995,"type":"Película","genre":"Thriller","status":"Pendiente","rating":0,"synopsis":"Dos detectives persiguen a un asesino en serie que basa sus crímenes en los siete pecados capitales. Obra maestra del thriller oscuro dirigida por David Fincher."},{"id":16,"title":"La Lista de Schindler","year":1993,"type":"Película","genre":"Drama","status":"Pendiente","rating":0,"synopsis":"La historia real de Oskar Schindler, empresario alemán que salvó la vida de más de mil judíos durante el Holocausto. Drama histórico esencial de Steven Spielberg."},{"id":200,"title":"Succession","year":2018,"type":"Serie","genre":"Drama","status":"Vista","rating":6,"synopsis":"La familia Roy, propietaria de un imperio mediático, entra en guerra cuando el patriarca anuncia su retiro. Poder, traición y humor negro en su máxima expresión."},{"id":201,"title":"Severance","year":2022,"type":"Serie","genre":"Ciencia ficción","status":"Pendiente","rating":0,"synopsis":"Los empleados de Lumon Industries se someten a un procedimiento que separa quirúrgicamente sus memorias laborales de las personales."},{"id":202,"title":"True Detective T1","year":2014,"type":"Serie","genre":"Crimen","status":"Pendiente","rating":0,"synopsis":"Dos detectives de personalidades opuestas investigan durante 17 años crímenes rituales en Louisiana. Atmósfera oscura e hipnótica."},{"id":203,"title":"Una batalla tras otra","year":2026,"type":"Película","genre":"Acción","status":"Vista","synopsis":"Bob, un revolucionario fracasado, adicto y paranoico, sobrevive desconectado de la realidad con su hija, Willa. Un día, Willa desaparece y el ex-radical hará todo por encontrarla.","rating":5}];
 
@@ -416,7 +460,10 @@ async function fetchPoster(title,year,type){
   return PC[k];
 }
 async function preload(list){
-  await Promise.all(list.map(i=>fetchPoster(i.title,i.year,i.type)));
+  await Promise.all([
+    ...list.map(i=>fetchPoster(i.title,i.year,i.type)),
+    ...list.map(i=>fetchWhere(i.title,i.year,i.type)),
+  ]);
   render();
 }
 
@@ -455,6 +502,10 @@ function renderTop(){
         <div class="tc-meta">${item.genre} · ${item.type}</div>
         <div class="tc-stars">${stars(item.rating,14)}</div>
         ${item.synopsis?`<div class="tc-syn">${item.synopsis}</div>`:""}
+        <div style="display:flex;align-items:center;gap:5px;margin-top:4px;flex-wrap:wrap">
+          <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px">Ver en</span>
+          ${whereHTML(item.title,item.year,item.type)}
+        </div>
       </div>
     </div>`;
   }).join(""):`<div class="empty"><span class="empty-icon">🏆</span><p>No hay títulos calificados</p></div>`;
@@ -493,6 +544,10 @@ function renderGeneros(){
           <div class="badges"><span class="badge ${item.status==="Vista"?"bv":"bp"}">${item.status}</span><span class="badge bt">${item.type}</span></div>
           <div>${item.rating?stars(item.rating):`<span style="font-size:10px;color:var(--text3)">Sin calificar</span>`}</div>
           ${item.synopsis?`<div class="gc-syn">${item.synopsis}</div>`:""}
+          <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:2px">
+            <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px">Ver en</span>
+            ${whereHTML(item.title,item.year,item.type)}
+          </div>
         </div>
       </div>`;
     }).join("");
@@ -531,6 +586,10 @@ function renderRecs(){
             </div>
             <div class="rc-syn">${r.synopsis}</div>
             <div class="rc-reason">💡 ${r.reason}</div>
+            <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:2px">
+              <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px">Ver en</span>
+              ${whereHTML(r.title,r.year,r.type)}
+            </div>
             <button class="rc-add" onclick="addRec(${r.idx})">+ Añadir a mi lista</button>
           </div>
         </div>`;
@@ -578,7 +637,13 @@ function renderLista(){
         </div>
         ${item.synopsis?`<div class="syn-text" id="syn-${item.id}">${item.synopsis}</div>`:""}
         <div class="card-foot">
-          <div class="star-row">${starBtns}</div>
+          <div style="display:flex;flex-direction:column;gap:5px;flex:1">
+            <div class="star-row">${starBtns}</div>
+            <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">
+              <span style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px">Ver en</span>
+              ${whereHTML(item.title,item.year,item.type)}
+            </div>
+          </div>
           <div class="card-actions">
             <button class="action-btn" onclick="toggleStatus(${item.id})">${item.status==="Vista"?"→ Pendiente":"→ Vista"}</button>
             ${item.synopsis?`<button class="action-btn" onclick="toggleSyn(${item.id})">Sinopsis</button>`:""}
